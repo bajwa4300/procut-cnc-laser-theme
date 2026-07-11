@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROCUT — CNC Laser Cutting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="procut-styles.css">
+<style>
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 32px 60px;position:relative;border-bottom:1px solid var(--line);}
+  .hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--steel);display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .hero-eyebrow .dot{width:6px;height:6px;background:var(--laser);border-radius:50%;box-shadow:0 0 8px var(--laser);animation:pulse 1.6s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.25;}}
+  .hero h1{font-family:var(--display);font-size:clamp(58px,11vw,168px);line-height:.86;letter-spacing:-1px;text-transform:uppercase;max-width:1200px;}
+  .hero h1 .cutline{position:relative;display:inline-block;}
+  .hero h1 .cutline svg{position:absolute;left:0;top:-6%;width:100%;height:112%;overflow:visible;}
+  .hero h1 .cutline path{fill:none;stroke:var(--laser);stroke-width:3;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s ease forwards .4s;filter:drop-shadow(0 0 6px var(--laser));}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .hero-sub{display:flex;justify-content:space-between;align-items:flex-end;margin-top:36px;flex-wrap:wrap;gap:24px;max-width:1200px;}
+  .hero-sub p{font-size:16px;max-width:420px;color:var(--steel);line-height:1.55;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-spec{position:absolute;right:32px;top:150px;font-family:var(--mono);font-size:10px;color:var(--steel-light);text-align:right;line-height:1.9;letter-spacing:.5px;display:none;}
+  @media(min-width:1000px){.hero-spec{display:block;}}
+
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);max-width:1400px;margin:0 auto;}
+  .service-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 30px;min-height:260px;position:relative;transition:background .2s;}
+  .service-card:hover{background:var(--black);color:var(--paper);}
+  .service-card:hover .service-num{color:var(--laser);}
+  .service-card:hover .service-mat{color:var(--steel-light);}
+  .service-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:1px;}
+  .service-card h3{font-family:var(--display);font-size:30px;text-transform:uppercase;margin:26px 0 14px;letter-spacing:.3px;}
+  .service-card p{font-size:13.5px;line-height:1.6;color:var(--steel);}
+  .service-card:hover p{color:#b8b8b3;}
+  .service-mat{position:absolute;bottom:24px;left:30px;right:30px;font-family:var(--mono);font-size:10px;color:var(--steel-light);letter-spacing:1px;padding-top:14px;border-top:1px dashed var(--line);}
+  .service-card:hover .service-mat{border-color:#333;}
+
+  .materials{padding:90px 32px;border-bottom:1px solid var(--line);}
+  .mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:1400px;margin:0 auto;}
+  .mat-card{background:var(--paper);padding:30px 22px;text-align:center;}
+  .mat-card .swatch{width:100%;height:70px;margin-bottom:18px;border:1px solid var(--line);}
+  .mat-card h4{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+  .mat-card p{font-family:var(--mono);font-size:10px;color:var(--steel-light);}
+
+  .process{background:var(--black);color:var(--paper);}
+  .process .section-tag{color:var(--laser);}
+  .process .section-head p{color:var(--steel-light);}
+  .process-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-dark);max-width:1400px;margin:0 auto;}
+  .process-step{padding:34px 26px;border-right:1px solid var(--line-dark);position:relative;}
+  .process-step:last-child{border-right:none;}
+  .process-step .pnum{font-family:var(--mono);font-size:44px;color:#262626;font-weight:700;line-height:1;}
+  .process-step h4{font-family:var(--display);font-size:22px;text-transform:uppercase;margin:18px 0 10px;}
+  .process-step p{font-size:12.5px;color:var(--steel-light);line-height:1.6;}
+  .process-arrow{position:absolute;top:34px;right:-1px;font-family:var(--mono);color:var(--laser);font-size:14px;}
+  .process-step:last-child .process-arrow{display:none;}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);max-width:1400px;margin:70px auto 0;border-top:1px solid var(--line-dark);}
+  .stat{padding:30px 20px 0;border-right:1px solid var(--line-dark);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:var(--display);font-size:52px;color:var(--laser);line-height:1;}
+  .stat .lbl{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--steel-light);text-transform:uppercase;margin-top:8px;}
+
+  @media(max-width:900px){.services-grid,.process-row,.stats,.mat-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+
+<header>
+  <a href="index.html" class="logo-mark">
+    <span class="logo-word"><span class="pro">PRO</span><span class="cutwrap">CUT<span class="spark-beam"></span><span class="spark-burst"></span></span></span>
+    <span class="logo-tagline">CNC&nbsp;LASER</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-btn">CART <span>(0)</span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="crosshair tl"></div><div class="crosshair tr"></div>
+  <div class="crosshair bl"></div><div class="crosshair br"></div>
+  <div class="hero-eyebrow"><span class="dot"></span>FIBER LASER · RAWALPINDI, PK · EST. WORKSHOP</div>
+  <h1>STEEL DOESN'T<br>
+    <span class="cutline">ARGUE.
+      <svg viewBox="0 0 620 120" preserveAspectRatio="none"><path d="M0,60 L610,60"/></svg>
+    </span>
+  </h1>
+  <div class="hero-sub">
+    <p>It gets cut exactly where the beam says. Gates, railings, calligraphy, elevation panels — drawn once, cut precise, every time.</p>
+    <div class="hero-ctas">
+      <a href="shop.html" class="btn solid">SHOP THE CATALOG →</a>
+      <a href="index.html#contact" class="btn ghost">REQUEST A QUOTE</a>
+    </div>
+  </div>
+  <div class="hero-spec">MACHINE — FIBER LASER 1500W<br>TOLERANCE — ±0.10 MM<br>MAX SHEET — 1500 × 3000 MM<br>MATERIALS — MS / SS / GOLD SS / ALU</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>MILD STEEL</span><span class="accent">◆</span><span>STAINLESS STEEL</span><span class="accent">◆</span>
+    <span>GOLDEN SS</span><span class="accent">◆</span><span>ALUMINIUM</span><span class="accent">◆</span>
+    <span>GATES &amp; DOORS</span><span class="accent">◆</span><span>RAILINGS</span><span class="accent">◆</span>
+    <span>ISLAMIC CALLIGRAPHY</span><span class="accent">◆</span><span>PARTITION PANELS</span><span class="accent">◆</span>
+    <span>MILD STEEL</span><span class="accent">◆</span><span>STAINLESS STEEL</span><span class="accent">◆</span>
+    <span>GOLDEN SS</span><span class="accent">◆</span><span>ALUMINIUM</span><span class="accent">◆</span>
+    <span>GATES &amp; DOORS</span><span class="accent">◆</span><span>RAILINGS</span><span class="accent">◆</span>
+    <span>ISLAMIC CALLIGRAPHY</span><span class="accent">◆</span><span>PARTITION PANELS</span><span class="accent">◆</span>
+  </div>
+</div>
+
+<section class="section" id="services">
+  <div class="section-head">
+    <div><span class="section-tag">Capabilities</span><h2>What We<br>Cut.</h2></div>
+    <p>Six disciplines, one beam. Every job nested, cut and finished in-house at the Ratta Road workshop.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card"><span class="service-num">01</span><h3>CNC Laser Cutting</h3><p>Precision sheet cutting for mechanical parts, brackets and custom components.</p><div class="service-mat">MS · STEEL · GOLDEN SS · ALUMINIUM</div></div>
+    <div class="service-card"><span class="service-num">02</span><h3>Gates &amp; Doors</h3><p>Custom-cut security gates and door panels, from geometric to ornamental patterns.</p><div class="service-mat">MS SHEET · 2–4MM</div></div>
+    <div class="service-card"><span class="service-num">03</span><h3>Railing &amp; Stairs</h3><p>Structural and decorative railing panels for staircases, balconies and balustrades.</p><div class="service-mat">MS · SS</div></div>
+    <div class="service-card"><span class="service-num">04</span><h3>Front Elevation</h3><p>Facade cladding and jaali-style screens that turn a wall into a lit-through pattern.</p><div class="service-mat">ALUMINIUM · GOLDEN SS</div></div>
+    <div class="service-card"><span class="service-num">05</span><h3>Islamic Calligraphy</h3><p>Ayat, names and duas cut clean from steel — for walls, clocks and mosque interiors.</p><div class="service-mat">MS · GOLDEN SS</div></div>
+    <div class="service-card"><span class="service-num">06</span><h3>Partition Panels</h3><p>Modular jaali dividers that split a room without closing it off.</p><div class="service-mat">MS · ALUMINIUM</div></div>
+  </div>
+</section>
+
+<section class="materials" id="materials">
+  <div class="section-head">
+    <div><span class="section-tag">Raw Stock</span><h2>Cut From.</h2></div>
+    <p>Every material carries its own cut settings — beam power, speed, and gas assist tuned per sheet.</p>
+  </div>
+  <div class="mat-grid">
+    <div class="mat-card"><div class="swatch" style="background:linear-gradient(135deg,#8a8d92,#5a5d61);"></div><h4>Mild Steel</h4><p>1MM – 6MM SHEET</p></div>
+    <div class="mat-card"><div class="swatch" style="background:linear-gradient(135deg,#d7d7d4,#a8a8a4);"></div><h4>Stainless Steel</h4><p>MIRROR / MATTE</p></div>
+    <div class="mat-card"><div class="swatch" style="background:linear-gradient(135deg,#c9a668,#8a6f3f);"></div><h4>Golden SS</h4><p>PVD COATED</p></div>
+    <div class="mat-card"><div class="swatch" style="background:linear-gradient(135deg,#e6e6e3,#bcbcb8);"></div><h4>Aluminium</h4><p>1MM – 4MM SHEET</p></div>
+  </div>
+</section>
+
+<section class="section process" id="process">
+  <div class="section-head">
+    <div><span class="section-tag">How It's Made</span><h2>Design To<br>Delivery.</h2></div>
+    <p>Four steps, same sequence for a single bracket or a full gate.</p>
+  </div>
+  <div class="process-row">
+    <div class="process-step"><span class="pnum">01</span><h4>Send Design</h4><p>Share a photo, sketch or CAD file — or pick a pattern from our catalog.</p><span class="process-arrow">→</span></div>
+    <div class="process-step"><span class="pnum">02</span><h4>Nest &amp; Quote</h4><p>We vectorize the pattern, nest it on sheet, and confirm size and price.</p><span class="process-arrow">→</span></div>
+    <div class="process-step"><span class="pnum">03</span><h4>Laser Cut</h4><p>Fiber laser cuts to ±0.10mm tolerance on your chosen material.</p><span class="process-arrow">→</span></div>
+    <div class="process-step"><span class="pnum">04</span><h4>Finish &amp; Deliver</h4><p>Deburred, coated if needed, and shipped or installed across Rawalpindi/Islamabad.</p></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="num">±0.1</div><div class="lbl">MM Cut Tolerance</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">Materials Mastered</div></div>
+    <div class="stat"><div class="num">1500W</div><div class="lbl">Fiber Laser Power</div></div>
+    <div class="stat"><div class="num">24H</div><div class="lbl">Typical Quote Turnaround</div></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h2>LET'S<br>CUT<span>.</span></h2>
+      <p class="lede">Send your design or drop by the workshop. M. Hassan and the team quote most jobs same day.</p>
+      <div class="hero-ctas" style="margin-top:28px;"><a href="https://wa.me/923215568112" class="btn solid">WHATSAPP US →</a></div>
+    </div>
+    <div class="fcol"><h5>Workshop</h5><p>Shop # W/572, Ratta Road,<br>Rawalpindi, Pakistan</p><p>Mon – Sat, 9AM – 7PM</p></div>
+    <div class="fcol"><h5>Contact</h5><a href="tel:03215568112">0321-5568112</a><a href="mailto:hassan4515@yahoo.com">hassan4515@yahoo.com</a><a href="#">Facebook — ProCut CNC Laser</a></div>
+    <div class="fcol"><h5>Shop</h5><a href="services.html">Services</a><a href="shop.html">Catalog</a><a href="index.html#materials">Materials</a><a href="index.html#process">Process</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 PROCUT CNC LASER — RAWALPINDI</span><span>MS · STEEL · GOLDEN SS · ALUMINIUM</span></div>
+</footer>
+
+</body>
+</html>

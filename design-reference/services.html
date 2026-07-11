@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — PROCUT CNC Laser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="procut-styles.css">
+<style>
+  .svc-head{padding:150px 32px 50px;border-bottom:1px solid var(--line);}
+  .svc-head h1{font-family:var(--display);font-size:clamp(48px,8vw,110px);text-transform:uppercase;line-height:.88;letter-spacing:-1px;max-width:1400px;margin:0 auto;}
+  .svc-head p{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:1px;max-width:1400px;margin:14px auto 0;text-transform:uppercase;}
+
+  .svc-list{max-width:1400px;margin:0 auto;border-top:1px solid var(--line);}
+  .svc-item{
+    display:grid;grid-template-columns:100px 1fr 240px 200px 40px;gap:24px;align-items:center;
+    padding:38px 32px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;
+    transition:background .2s;position:relative;
+  }
+  .svc-item:hover{background:var(--black);color:var(--paper);}
+  .svc-item:hover .svc-num{color:var(--laser);}
+  .svc-item:hover .svc-mat span{border-color:#333;color:var(--steel-light);}
+  .svc-item:hover .svc-arrow{color:var(--laser);transform:translateX(6px);}
+  .svc-item:hover .svc-icon svg *{stroke:var(--paper);}
+  .svc-num{font-family:var(--mono);font-size:13px;color:var(--steel);}
+  .svc-icon{width:64px;height:64px;display:flex;align-items:center;justify-content:center;}
+  .svc-icon svg{width:100%;height:100%;}
+  .svc-body h3{font-family:var(--display);font-size:32px;text-transform:uppercase;letter-spacing:.2px;line-height:1;margin-bottom:8px;}
+  .svc-body p{font-size:13.5px;color:var(--steel);line-height:1.55;max-width:480px;}
+  .svc-item:hover .svc-body p{color:#b8b8b3;}
+  .svc-mat{display:flex;flex-wrap:wrap;gap:6px;}
+  .svc-mat span{font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;border:1px solid var(--line);padding:5px 8px;text-transform:uppercase;color:var(--steel);}
+  .svc-price{font-family:var(--mono);font-size:12px;text-align:right;letter-spacing:.5px;}
+  .svc-price small{display:block;font-size:9px;color:var(--steel-light);text-transform:uppercase;margin-top:4px;}
+  .svc-arrow{font-family:var(--mono);font-size:20px;transition:.2s;}
+
+  @media(max-width:900px){
+    .svc-item{grid-template-columns:60px 1fr;grid-template-areas:"icon body" ". mat" ". price";row-gap:10px;}
+    .svc-num{display:none;}
+    .svc-price{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+
+<header>
+  <a href="index.html" class="logo-mark">
+    <span class="logo-word"><span class="pro">PRO</span><span class="cutwrap">CUT<span class="spark-beam"></span><span class="spark-burst"></span></span></span>
+    <span class="logo-tagline">CNC&nbsp;LASER</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right"><a href="cart.html" class="cart-btn">CART <span>(0)</span></a></div>
+</header>
+
+<div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span class="current">Services</span></div>
+
+<div class="svc-head">
+  <h1>What We Cut.</h1>
+  <p>06 DISCIPLINES — ONE FIBER LASER — RATTA ROAD, RAWALPINDI</p>
+</div>
+
+<div class="svc-list">
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">01</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><rect x="30" y="30" width="140" height="140"/><circle cx="100" cy="100" r="34"/><circle cx="100" cy="100" r="6"/><path d="M100 30v36M100 134v36M30 100h36M134 100h36"/></g></svg></div>
+    <div class="svc-body"><h3>CNC Laser Cutting</h3><p>Precision sheet cutting for mechanical parts, brackets, gears and custom components — priced by weight or by the sheet.</p></div>
+    <div class="svc-mat"><span>MS</span><span>SS</span><span>Golden SS</span><span>Aluminium</span></div>
+    <div class="svc-price">From PKR 450<small>per kg</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">02</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><rect x="30" y="20" width="60" height="160"/><rect x="110" y="20" width="60" height="160"/><path d="M45 40h30M45 70h30M45 100h30M45 130h30"/></g></svg></div>
+    <div class="svc-body"><h3>Gates &amp; Doors</h3><p>Custom-cut security gates and door panels, from clean geometric grids to fully ornamental patterns.</p></div>
+    <div class="svc-mat"><span>MS Sheet</span><span>2–4mm</span></div>
+    <div class="svc-price">From PKR 45,000<small>per gate</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">03</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><path d="M20 180V60c0-10 8-20 20-20h120c12 0 20 10 20 20v120"/><path d="M20 180h160M45 180v-60c10-8 20-8 30 0M85 180v-60c10-8 20-8 30 0M125 180v-60c10-8 20-8 30 0"/></g></svg></div>
+    <div class="svc-body"><h3>Railing &amp; Stairs</h3><p>Structural and decorative infill panels for staircases, balconies and balustrades, sold per running foot.</p></div>
+    <div class="svc-mat"><span>MS</span><span>SS</span></div>
+    <div class="svc-price">From PKR 3,200<small>per ft</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">04</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><rect x="20" y="20" width="160" height="160" rx="2"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="38"/><path d="M100 40v20M100 140v20M40 100h20M140 100h20"/></g></svg></div>
+    <div class="svc-body"><h3>Front Elevation</h3><p>Facade cladding and jaali-style screens that turn a plain wall into a lit-through pattern, day or night.</p></div>
+    <div class="svc-mat"><span>Aluminium</span><span>Golden SS</span></div>
+    <div class="svc-price">From PKR 6,800<small>per sq.ft</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">05</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><circle cx="100" cy="100" r="80"/><path d="M100 45c-30 0-40 25-40 55 0 20 15 30 40 30s40-10 40-30c0-30-10-55-40-55z"/></g></svg></div>
+    <div class="svc-body"><h3>Islamic Calligraphy</h3><p>Ayat, names and duas cut clean from a single continuous line of steel — for walls, clocks and mosque interiors.</p></div>
+    <div class="svc-mat"><span>MS</span><span>Golden SS</span></div>
+    <div class="svc-price">From PKR 8,500<small>per piece</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+  <a href="service-detail.html" class="svc-item">
+    <span class="svc-num">06</span>
+    <div class="svc-icon"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="6" fill="none"><rect x="20" y="20" width="160" height="160"/><path d="M20 60h160M20 100h160M20 140h160M60 20v160M100 20v160M140 20v160"/></g></svg></div>
+    <div class="svc-body"><h3>Partition Panels</h3><p>Modular jaali dividers that split a room without closing it off — sold as sets, mounted to any frame.</p></div>
+    <div class="svc-mat"><span>MS</span><span>Aluminium</span></div>
+    <div class="svc-price">From PKR 14,000<small>per panel</small></div>
+    <span class="svc-arrow">→</span>
+  </a>
+
+</div>
+
+<section class="section" style="border-bottom:none;">
+  <div class="section-head" style="margin-bottom:0;">
+    <div><span class="section-tag">Not Sure Which?</span><h2>Send The<br>Design, We'll<br>Tell You.</h2></div>
+    <p>Photo, sketch, or a rough idea — WhatsApp it over and we'll tell you which process, material and price fit best.</p>
+  </div>
+  <div class="hero-ctas" style="margin-top:34px;">
+    <a href="https://wa.me/923215568112" class="btn solid">WHATSAPP US →</a>
+    <a href="index.html#contact" class="btn ghost">VISIT THE WORKSHOP</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h2>LET'S<br>CUT<span>.</span></h2>
+      <p class="lede">Send your design or drop by the workshop. M. Hassan and the team quote most jobs same day.</p>
+      <div class="hero-ctas" style="margin-top:28px;"><a href="https://wa.me/923215568112" class="btn solid">WHATSAPP US →</a></div>
+    </div>
+    <div class="fcol"><h5>Workshop</h5><p>Shop # W/572, Ratta Road,<br>Rawalpindi, Pakistan</p><p>Mon – Sat, 9AM – 7PM</p></div>
+    <div class="fcol"><h5>Contact</h5><a href="tel:03215568112">0321-5568112</a><a href="mailto:hassan4515@yahoo.com">hassan4515@yahoo.com</a><a href="#">Facebook — ProCut CNC Laser</a></div>
+    <div class="fcol"><h5>Shop</h5><a href="services.html">Services</a><a href="shop.html">Catalog</a><a href="index.html#materials">Materials</a><a href="index.html#process">Process</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 PROCUT CNC LASER — RAWALPINDI</span><span>MS · STEEL · GOLDEN SS · ALUMINIUM</span></div>
+</footer>
+
+</body>
+</html>

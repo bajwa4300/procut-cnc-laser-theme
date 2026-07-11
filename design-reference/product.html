@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayat al-Kursi Wall Clock — PROCUT CNC Laser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="procut-styles.css">
+<style>
+  .pdp{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:40px auto 0;border-top:1px solid var(--line);}
+  .pdp-gallery{border-right:1px solid var(--line);padding:0;}
+  .pdp-main{aspect-ratio:1/1;background:var(--paper2);position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);}
+  .pdp-main svg{width:60%;height:60%;}
+  .pdp-main .product-tag{position:absolute;top:20px;left:20px;}
+  .pdp-thumbs{display:grid;grid-template-columns:repeat(4,1fr);}
+  .pdp-thumb{aspect-ratio:1/1;border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center;background:var(--paper);cursor:pointer;}
+  .pdp-thumb:last-child{border-right:none;}
+  .pdp-thumb svg{width:55%;height:55%;opacity:.55;}
+  .pdp-thumb.active{background:var(--black);}
+  .pdp-thumb.active svg{opacity:1;}
+  .pdp-thumb.active svg *{stroke:var(--paper)!important;}
+
+  .pdp-info{padding:50px 50px 50px 60px;}
+  .pdp-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--laser);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .pdp-info h1{font-family:var(--display);font-size:clamp(38px,4.5vw,56px);text-transform:uppercase;line-height:.94;letter-spacing:-.5px;margin-bottom:16px;}
+  .pdp-code{font-family:var(--mono);font-size:11px;color:var(--steel-light);letter-spacing:1px;margin-bottom:24px;}
+  .pdp-price{font-family:var(--mono);font-size:28px;font-weight:600;margin-bottom:6px;}
+  .pdp-price small{font-size:12px;color:var(--steel-light);font-weight:400;}
+  .pdp-stock{font-family:var(--mono);font-size:11px;color:var(--steel);margin-bottom:30px;display:flex;align-items:center;gap:8px;}
+  .pdp-stock .dot{width:6px;height:6px;background:#2ba84a;border-radius:50%;}
+  .pdp-desc{font-size:14.5px;line-height:1.7;color:var(--steel);margin-bottom:34px;max-width:480px;}
+
+  .opt-group{margin-bottom:28px;}
+  .opt-group h5{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;}
+  .opt-group h5 span{color:var(--steel-light);font-weight:400;text-transform:none;letter-spacing:0;}
+  .opt-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .opt-pill{font-family:var(--mono);font-size:12px;letter-spacing:.5px;border:1px solid var(--black);padding:11px 18px;cursor:pointer;background:none;text-transform:uppercase;}
+  .opt-pill.active{background:var(--black);color:var(--white);}
+  .opt-swatch{width:38px;height:38px;border:1px solid var(--line);cursor:pointer;position:relative;}
+  .opt-swatch.active{outline:2px solid var(--laser);outline-offset:2px;}
+
+  .qty-row{display:flex;align-items:center;gap:16px;margin-bottom:26px;}
+  .qty-box{display:flex;align-items:center;border:1px solid var(--black);}
+  .qty-box button{font-family:var(--mono);font-size:14px;background:none;border:none;padding:12px 16px;cursor:pointer;}
+  .qty-box button:hover{background:var(--black);color:var(--white);}
+  .qty-box span{font-family:var(--mono);font-size:13px;padding:0 14px;min-width:20px;text-align:center;}
+
+  .pdp-ctas{display:flex;gap:12px;margin-bottom:36px;}
+  .pdp-ctas .btn{flex:1;justify-content:center;}
+
+  .spec-sheet{border:1px solid var(--line);margin-bottom:30px;}
+  .spec-row{display:flex;justify-content:space-between;padding:12px 18px;font-family:var(--mono);font-size:11.5px;border-bottom:1px dashed var(--line);}
+  .spec-row:last-child{border-bottom:none;}
+  .spec-row .k{color:var(--steel);letter-spacing:1px;text-transform:uppercase;}
+  .spec-row .v{color:var(--black);font-weight:600;}
+
+  .trust-strip{display:flex;gap:24px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--steel);letter-spacing:.5px;}
+  .trust-strip span{display:flex;align-items:center;gap:6px;}
+  .trust-strip .dot{color:var(--laser);}
+
+  .related{padding:100px 32px;}
+  @media(max-width:900px){
+    .pdp{grid-template-columns:1fr;}
+    .pdp-gallery{border-right:none;border-bottom:1px solid var(--line);}
+    .pdp-info{padding:40px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+
+<header>
+  <a href="index.html" class="logo-mark">
+    <span class="logo-word"><span class="pro">PRO</span><span class="cutwrap">CUT<span class="spark-beam"></span><span class="spark-burst"></span></span></span>
+    <span class="logo-tagline">CNC&nbsp;LASER</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right"><a href="cart.html" class="cart-btn">CART <span>(0)</span></a></div>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span><a href="shop.html">Shop</a><span class="sep">/</span><span class="current">Ayat al-Kursi Wall Clock</span>
+</div>
+
+<div class="pdp">
+  <div class="pdp-gallery">
+    <div class="pdp-main">
+      <span class="product-tag laser">BESTSELLER</span>
+      <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#1a1a1a"/><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M100 20 100 45 M180 100 155 100 M100 180 100 155 M20 100 45 100"/><path d="M100 45c-30 0-40 25-40 55 0 20 15 30 40 30s40-10 40-30c0-30-10-55-40-55z"/></g></svg>
+    </div>
+    <div class="pdp-thumbs">
+      <div class="pdp-thumb active"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#1a1a1a"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 200 200"><rect x="30" y="30" width="140" height="140" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="60" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg></div>
+      <div class="pdp-thumb"><svg viewBox="0 0 200 200"><path d="M40 160 L100 40 L160 160 Z" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg></div>
+    </div>
+  </div>
+
+  <div class="pdp-info">
+    <div class="pdp-eyebrow"><span>●</span> WALL ART / CALLIGRAPHY</div>
+    <h1>Ayat al-Kursi Wall Clock</h1>
+    <div class="pdp-code">SKU PC-CLK-01 &nbsp;·&nbsp; CUT FILE V3</div>
+
+    <div class="pdp-price">PKR 8,500 <small>/ piece, incl. movement</small></div>
+    <div class="pdp-stock"><span class="dot"></span> IN STOCK — SHIPS IN 3–5 DAYS</div>
+
+    <p class="pdp-desc">Ayat al-Kursi laser-cut in a single continuous line from 2mm steel, mounted on a silent-sweep clock movement. Every piece is cut fresh per order — no two are cast from a mould.</p>
+
+    <div class="opt-group">
+      <h5>Finish <span>— Matte Black selected</span></h5>
+      <div class="opt-row">
+        <div class="opt-swatch active" title="Matte Black" style="background:#1a1a1a;"></div>
+        <div class="opt-swatch" title="Raw Steel" style="background:linear-gradient(135deg,#9a9d9f,#6a6d6f);"></div>
+        <div class="opt-swatch" title="Golden PVD" style="background:linear-gradient(135deg,#c9a668,#8a6f3f);"></div>
+      </div>
+    </div>
+
+    <div class="opt-group">
+      <h5>Size <span>— 24" selected</span></h5>
+      <div class="opt-row">
+        <button class="opt-pill">18"</button>
+        <button class="opt-pill active">24"</button>
+        <button class="opt-pill">30"</button>
+      </div>
+    </div>
+
+    <div class="qty-row">
+      <div class="qty-box"><button>−</button><span>1</span><button>+</button></div>
+      <span style="font-family:var(--mono);font-size:11px;color:var(--steel-light);">ONLY THIS SIZE/FINISH COMBO ADDS TO CART</span>
+    </div>
+
+    <div class="pdp-ctas">
+      <button class="btn solid full">ADD TO CART — PKR 8,500</button>
+      <button class="btn ghost">♡</button>
+    </div>
+
+    <div class="spec-sheet">
+      <div class="spec-row"><span class="k">Material</span><span class="v">2MM Mild Steel</span></div>
+      <div class="spec-row"><span class="k">Diameter</span><span class="v">24 IN (609MM)</span></div>
+      <div class="spec-row"><span class="k">Cut Tolerance</span><span class="v">± 0.10MM</span></div>
+      <div class="spec-row"><span class="k">Movement</span><span class="v">Silent Sweep Quartz</span></div>
+      <div class="spec-row"><span class="k">Mounting</span><span class="v">Rear Keyhole Bracket</span></div>
+      <div class="spec-row"><span class="k">Lead Time</span><span class="v">3–5 Working Days</span></div>
+    </div>
+
+    <div class="trust-strip">
+      <span><span class="dot">◆</span> CUT TO ORDER</span>
+      <span><span class="dot">◆</span> RAWALPINDI PICKUP AVAILABLE</span>
+      <span><span class="dot">◆</span> WHATSAPP SUPPORT</span>
+    </div>
+  </div>
+</div>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>CUT ON ORDER</span><span class="accent">◆</span><span>±0.10MM TOLERANCE</span><span class="accent">◆</span>
+    <span>SINGLE CONTINUOUS LINE</span><span class="accent">◆</span><span>RAWALPINDI WORKSHOP</span><span class="accent">◆</span>
+    <span>CUT ON ORDER</span><span class="accent">◆</span><span>±0.10MM TOLERANCE</span><span class="accent">◆</span>
+    <span>SINGLE CONTINUOUS LINE</span><span class="accent">◆</span><span>RAWALPINDI WORKSHOP</span><span class="accent">◆</span>
+  </div>
+</div>
+
+<section class="related">
+  <div class="section-head">
+    <div><span class="section-tag">Pairs Well With</span><h2>You Might<br>Also Cut.</h2></div>
+  </div>
+  <div class="product-grid">
+    <a href="product.html" class="product-card">
+      <div class="product-media"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160"/><path d="M20 60h160M20 100h160M20 140h160M60 20v160M100 20v160M140 20v160"/><circle cx="100" cy="100" r="20"/></g></svg></div>
+      <div class="product-info"><div class="pi-top"><h3>Jaali Partition Panel</h3><span class="code">PC-PRT-02</span></div><div class="pi-bottom"><span class="price">PKR 14,000</span><button class="add-btn" onclick="event.preventDefault()">Add</button></div></div>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="product-media"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160" rx="2"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="38"/></g></svg></div>
+      <div class="product-info"><div class="pi-top"><h3>Front Elevation Screen</h3><span class="code">PC-ELV-05</span></div><div class="pi-bottom"><span class="price">PKR 6,800</span><button class="add-btn" onclick="event.preventDefault()">Add</button></div></div>
+    </a>
+    <a href="product.html" class="product-card">
+      <div class="product-media"><svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M20 180V60c0-10 8-20 20-20h120c12 0 20 10 20 20v120"/><path d="M20 180h160"/></g></svg></div>
+      <div class="product-info"><div class="pi-top"><h3>Staircase Railing Panel</h3><span class="code">PC-RAL-04</span></div><div class="pi-bottom"><span class="price">PKR 3,200</span><button class="add-btn" onclick="event.preventDefault()">Add</button></div></div>
+    </a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h2>LET'S<br>CUT<span>.</span></h2>
+      <p class="lede">Send your design or drop by the workshop. M. Hassan and the team quote most jobs same day.</p>
+      <div class="hero-ctas" style="margin-top:28px;"><a href="https://wa.me/923215568112" class="btn solid">WHATSAPP US →</a></div>
+    </div>
+    <div class="fcol"><h5>Workshop</h5><p>Shop # W/572, Ratta Road,<br>Rawalpindi, Pakistan</p><p>Mon – Sat, 9AM – 7PM</p></div>
+    <div class="fcol"><h5>Contact</h5><a href="tel:03215568112">0321-5568112</a><a href="mailto:hassan4515@yahoo.com">hassan4515@yahoo.com</a><a href="#">Facebook — ProCut CNC Laser</a></div>
+    <div class="fcol"><h5>Shop</h5><a href="services.html">Services</a><a href="shop.html">Catalog</a><a href="index.html#materials">Materials</a><a href="index.html#process">Process</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 PROCUT CNC LASER — RAWALPINDI</span><span>MS · STEEL · GOLDEN SS · ALUMINIUM</span></div>
+</footer>
+
+<script>
+  document.querySelectorAll('.opt-pill').forEach(b=>b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('.opt-pill').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+  document.querySelectorAll('.opt-swatch').forEach(b=>b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('.opt-swatch').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+  document.querySelectorAll('.pdp-thumb').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.pdp-thumb').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  }));
+  let qty=1;
+  const qtySpan=document.querySelector('.qty-box span');
+  document.querySelectorAll('.qty-box button')[0].addEventListener('click',()=>{if(qty>1)qty--;qtySpan.textContent=qty;});
+  document.querySelectorAll('.qty-box button')[1].addEventListener('click',()=>{qty++;qtySpan.textContent=qty;});
+</script>
+
+</body>
+</html>

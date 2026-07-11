@@ -1,0 +1,6 @@
+.shopify/
+.env
+node_modules/
+_dawn_temp/
+.DS_Store
+*.log

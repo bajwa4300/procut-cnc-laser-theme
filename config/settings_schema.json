@@ -1,0 +1,142 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "ProCut CNC Laser",
+    "theme_version": "1.0.0",
+    "theme_author": "ProCut",
+    "theme_documentation_url": "https://github.com",
+    "theme_support_url": "https://github.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent color (laser red)",
+        "default": "#ff2b1f"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "Leave empty to use the default PRO CUT mark"
+      },
+      {
+        "type": "text",
+        "id": "logo_tagline",
+        "label": "Logo tagline",
+        "default": "CNC LASER"
+      }
+    ]
+  },
+  {
+    "name": "Workshop",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "workshop_address",
+        "label": "Workshop address",
+        "default": "Shop # W/572, Ratta Road,\nRawalpindi, Pakistan"
+      },
+      {
+        "type": "text",
+        "id": "phone",
+        "label": "Phone number",
+        "default": "0321-5568112"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email",
+        "default": "hassan4515@yahoo.com"
+      },
+      {
+        "type": "text",
+        "id": "hours",
+        "label": "Business hours",
+        "default": "Mon – Sat, 9AM – 7PM"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp number (international format, no +)",
+        "default": "923215568112"
+      },
+      {
+        "type": "textarea",
+        "id": "machine_specs",
+        "label": "Hero machine specs (one line per spec)",
+        "default": "MACHINE — FIBER LASER 1500W\nTOLERANCE — ±0.10 MM\nMAX SHEET — 1500 × 3000 MM\nMATERIALS — MS / SS / GOLD SS / ALU"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "text",
+        "id": "delivery_estimate",
+        "label": "Delivery estimate display",
+        "default": "PKR 1,500",
+        "info": "Display-only estimate. Configure actual shipping rates in Shopify Admin."
+      },
+      {
+        "type": "textarea",
+        "id": "delivery_note",
+        "label": "Cart delivery note",
+        "default": "Delivery across Rawalpindi/Islamabad. Exact rate confirmed at checkout."
+      },
+      {
+        "type": "textarea",
+        "id": "promo_note",
+        "label": "Promo code note",
+        "default": "Discount codes are applied at checkout."
+      }
+    ]
+  },
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "footer_headline",
+        "label": "Footer headline",
+        "default": "LET'S CUT."
+      },
+      {
+        "type": "textarea",
+        "id": "footer_lede",
+        "label": "Footer description",
+        "default": "Send your design or drop by the workshop. M. Hassan and the team quote most jobs same day."
+      },
+      {
+        "type": "text",
+        "id": "footer_copyright",
+        "label": "Copyright line",
+        "default": "© 2026 PROCUT CNC LASER — RAWALPINDI"
+      },
+      {
+        "type": "text",
+        "id": "footer_materials_line",
+        "label": "Footer materials line",
+        "default": "MS · STEEL · GOLDEN SS · ALUMINIUM"
+      }
+    ]
+  }
+]

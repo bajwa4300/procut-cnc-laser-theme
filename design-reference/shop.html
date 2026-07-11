@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — PROCUT CNC Laser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="procut-styles.css">
+<style>
+  .shop-head{padding:150px 32px 50px;border-bottom:1px solid var(--line);}
+  .shop-head h1{font-family:var(--display);font-size:clamp(48px,8vw,110px);text-transform:uppercase;line-height:.88;letter-spacing:-1px;max-width:1400px;margin:0 auto;}
+  .shop-head .count{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:1px;max-width:1400px;margin:14px auto 0;}
+
+  .shop-body{display:grid;grid-template-columns:260px 1fr;max-width:1400px;margin:0 auto;}
+  .filters{border-right:1px solid var(--line);padding:50px 30px 50px 0;position:sticky;top:80px;align-self:start;}
+  .filter-group{margin-bottom:40px;}
+  .filter-group h5{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--steel);margin-bottom:16px;padding-bottom:10px;border-bottom:1px dashed var(--line);}
+  .filter-opt{display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:12px;padding:8px 0;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;}
+  .filter-opt:hover{color:var(--laser);}
+  .filter-opt input{accent-color:var(--laser);}
+  .filter-opt .n{color:var(--steel-light);font-size:10px;}
+  .filter-swatches{display:flex;gap:8px;flex-wrap:wrap;}
+  .fswatch{width:26px;height:26px;border:1px solid var(--line);cursor:pointer;}
+  .fswatch.active{outline:2px solid var(--laser);outline-offset:2px;}
+
+  .shop-grid-wrap{padding:50px 0 90px 40px;}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--steel);}
+  .toolbar select{font-family:var(--mono);font-size:11px;background:none;border:1px solid var(--black);padding:8px 10px;}
+
+  @media(max-width:900px){
+    .shop-body{grid-template-columns:1fr;}
+    .filters{position:static;border-right:none;border-bottom:1px solid var(--line);padding:30px 0;}
+    .shop-grid-wrap{padding:40px 0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+
+<header>
+  <a href="index.html" class="logo-mark">
+    <span class="logo-word"><span class="pro">PRO</span><span class="cutwrap">CUT<span class="spark-beam"></span><span class="spark-burst"></span></span></span>
+    <span class="logo-tagline">CNC&nbsp;LASER</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-right"><a href="cart.html" class="cart-btn">CART <span>(0)</span></a></div>
+</header>
+
+<div class="shop-head">
+  <h1>The Catalog.</h1>
+  <p class="count">06 PIECES — READY TO ORDER OR RE-QUOTE TO YOUR SIZE</p>
+</div>
+
+<div class="shop-body">
+  <aside class="filters">
+    <div class="filter-group">
+      <h5>Category</h5>
+      <label class="filter-opt"><span><input type="checkbox" checked> Wall Art / Calligraphy</span><span class="n">01</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Partition Panels</span><span class="n">01</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Gates &amp; Doors</span><span class="n">01</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Railings</span><span class="n">01</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Elevation Screens</span><span class="n">01</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Bulk / B2B Cutting</span><span class="n">01</span></label>
+    </div>
+    <div class="filter-group">
+      <h5>Material</h5>
+      <div class="filter-swatches">
+        <div class="fswatch active" title="Mild Steel" style="background:linear-gradient(135deg,#8a8d92,#5a5d61);"></div>
+        <div class="fswatch active" title="Stainless Steel" style="background:linear-gradient(135deg,#d7d7d4,#a8a8a4);"></div>
+        <div class="fswatch active" title="Golden SS" style="background:linear-gradient(135deg,#c9a668,#8a6f3f);"></div>
+        <div class="fswatch active" title="Aluminium" style="background:linear-gradient(135deg,#e6e6e3,#bcbcb8);"></div>
+      </div>
+    </div>
+    <div class="filter-group">
+      <h5>Order Type</h5>
+      <label class="filter-opt"><span><input type="checkbox" checked> Fixed Price</span></label>
+      <label class="filter-opt"><span><input type="checkbox" checked> Quote-Based</span></label>
+    </div>
+    <a href="index.html#contact" class="btn ghost full">CAN'T FIND IT? ASK →</a>
+  </aside>
+
+  <div class="shop-grid-wrap">
+    <div class="toolbar">
+      <span>SHOWING 6 OF 6</span>
+      <select><option>SORT — FEATURED</option><option>PRICE: LOW TO HIGH</option><option>PRICE: HIGH TO LOW</option><option>NEWEST</option></select>
+    </div>
+
+    <div class="product-grid">
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <span class="product-tag laser">BESTSELLER</span>
+          <svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#1a1a1a"/><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M100 20 100 45 M180 100 155 100 M100 180 100 155 M20 100 45 100"/><path d="M100 45c-30 0-40 25-40 55 0 20 15 30 40 30s40-10 40-30c0-30-10-55-40-55z"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Ayat al-Kursi Wall Clock</h3><span class="code">SKU PC-CLK-01</span></div>
+          <p class="desc">Laser-cut calligraphy clock, 24" dia, matte black or raw steel finish.</p>
+          <div class="pi-bottom"><span class="price">PKR 8,500 <small>/ piece</small></span><button class="add-btn" onclick="event.preventDefault()">Add to Cart</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160"/><path d="M20 60h160M20 100h160M20 140h160M60 20v160M100 20v160M140 20v160"/><circle cx="60" cy="60" r="14"/><circle cx="140" cy="60" r="14"/><circle cx="60" cy="140" r="14"/><circle cx="140" cy="140" r="14"/><circle cx="100" cy="100" r="20"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Jaali Partition Panel</h3><span class="code">SKU PC-PRT-02</span></div>
+          <p class="desc">Modular geometric screen panel, 3ft × 6ft, MS sheet, sets of 2 or 4.</p>
+          <div class="pi-bottom"><span class="price">PKR 14,000 <small>/ panel</small></span><button class="add-btn" onclick="event.preventDefault()">Add to Cart</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <span class="product-tag">MADE TO ORDER</span>
+          <svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="30" y="20" width="60" height="160"/><rect x="110" y="20" width="60" height="160"/><path d="M45 40h30M45 70h30M45 100h30M45 130h30M125 40h30M125 70h30M125 100h30M125 130h30"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Custom Steel Gate</h3><span class="code">SKU PC-GTE-03</span></div>
+          <p class="desc">Fully custom double-leaf gate, your pattern or one of ours, quoted by size.</p>
+          <div class="pi-bottom"><span class="price">From PKR 45,000</span><button class="add-btn" onclick="event.preventDefault()">Get Quote</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M20 180V60c0-10 8-20 20-20h120c12 0 20 10 20 20v120"/><path d="M20 180h160M45 180v-60c10-8 20-8 30 0M85 180v-60c10-8 20-8 30 0M125 180v-60c10-8 20-8 30 0"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Staircase Railing Panel</h3><span class="code">SKU PC-RAL-04</span></div>
+          <p class="desc">Ornamental infill panel for staircases and balconies, sold per running foot.</p>
+          <div class="pi-bottom"><span class="price">PKR 3,200 <small>/ ft</small></span><button class="add-btn" onclick="event.preventDefault()">Add to Cart</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160" rx="2"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="38"/><path d="M100 40v20M100 140v20M40 100h20M140 100h20M62 62l14 14M124 124l14 14M62 138l14-14M124 76l14-14"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Front Elevation Screen</h3><span class="code">SKU PC-ELV-05</span></div>
+          <p class="desc">Aluminium facade panel, weatherproof, mounted with standoff brackets.</p>
+          <div class="pi-bottom"><span class="price">PKR 6,800 <small>/ sq.ft</small></span><button class="add-btn" onclick="event.preventDefault()">Add to Cart</button></div>
+        </div>
+      </a>
+
+      <a href="product.html" class="product-card">
+        <div class="product-media">
+          <span class="product-tag">B2B</span>
+          <svg viewBox="0 0 200 200"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="30" y="30" width="140" height="140"/><circle cx="100" cy="100" r="34"/><circle cx="100" cy="100" r="6"/><path d="M100 30v36M100 134v36M30 100h36M134 100h36M52 52l25 25M148 52l-25 25M52 148l25-25M148 148l-25-25"/></g></svg>
+        </div>
+        <div class="product-info">
+          <div class="pi-top"><h3>Bulk Mechanical Cutting</h3><span class="code">SKU PC-MEC-06</span></div>
+          <p class="desc">Brackets, gears, gaskets and flat parts cut to your CAD file. Priced by weight.</p>
+          <div class="pi-bottom"><span class="price">From PKR 450 <small>/ kg</small></span><button class="add-btn" onclick="event.preventDefault()">Upload File</button></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h2>LET'S<br>CUT<span>.</span></h2>
+      <p class="lede">Send your design or drop by the workshop. M. Hassan and the team quote most jobs same day.</p>
+      <div class="hero-ctas" style="margin-top:28px;"><a href="https://wa.me/923215568112" class="btn solid">WHATSAPP US →</a></div>
+    </div>
+    <div class="fcol"><h5>Workshop</h5><p>Shop # W/572, Ratta Road,<br>Rawalpindi, Pakistan</p><p>Mon – Sat, 9AM – 7PM</p></div>
+    <div class="fcol"><h5>Contact</h5><a href="tel:03215568112">0321-5568112</a><a href="mailto:hassan4515@yahoo.com">hassan4515@yahoo.com</a><a href="#">Facebook — ProCut CNC Laser</a></div>
+    <div class="fcol"><h5>Shop</h5><a href="services.html">Services</a><a href="shop.html">Catalog</a><a href="index.html#materials">Materials</a><a href="index.html#process">Process</a></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 PROCUT CNC LASER — RAWALPINDI</span><span>MS · STEEL · GOLDEN SS · ALUMINIUM</span></div>
+</footer>
+
+</body>
+</html>
