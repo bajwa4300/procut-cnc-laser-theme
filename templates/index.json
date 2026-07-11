@@ -109,16 +109,43 @@
     "materials": {
       "type": "materials-strip",
       "blocks": {
-        "material_LUcDrk": {
+        "material_j3y4AB": {
           "type": "material",
           "settings": {
             "name": "Mild Steel",
             "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)",
             "spec": "1MM – 6MM SHEET"
           }
+        },
+        "material_qUFpmn": {
+          "type": "material",
+          "settings": {
+            "name": "Stainless Steel",
+            "swatch_color": "linear-gradient(135deg,#d7d7d4,#a8a8a4)",
+            "spec": "MIRROR / MATTE"
+          }
+        },
+        "material_7CNjKy": {
+          "type": "material",
+          "settings": {
+            "name": "Golden SS",
+            "swatch_color": "linear-gradient(135deg, #c9a668, #8a6f3f)",
+            "spec": "PVD COATED"
+          }
+        },
+        "material_LUcDrk": {
+          "type": "material",
+          "settings": {
+            "name": "Stainless Steel",
+            "swatch_color": "linear-gradient(135deg,#e6e6e3,#bcbcb8)",
+            "spec": "1MM – 6MM SHEET"
+          }
         }
       },
       "block_order": [
+        "material_j3y4AB",
+        "material_qUFpmn",
+        "material_7CNjKy",
         "material_LUcDrk"
       ],
       "settings": {
