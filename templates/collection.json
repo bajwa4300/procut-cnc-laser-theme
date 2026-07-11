@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {}
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "text": "CUT ON ORDER" } },
+        "item-2": { "type": "item", "settings": { "text": "±0.10MM TOLERANCE" } },
+        "item-3": { "type": "item", "settings": { "text": "RAWALPINDI WORKSHOP" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3"]
+    }
+  },
+  "order": ["main", "marquee"]
+}

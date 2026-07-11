@@ -1,0 +1,58 @@
+<section class="featured-collection" id="shopify-section-{{ section.id }}">
+  {%- if section.settings.tag != blank or section.settings.title != blank -%}
+    <div class="section-head wrap">
+      <div>
+        {%- if section.settings.tag != blank -%}
+          <span class="section-tag">{{ section.settings.tag }}</span>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2>{{ section.settings.title }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.description != blank -%}
+        <p>{{ section.settings.description }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- assign collection = collections[section.settings.collection] -%}
+  <div class="wrap">
+    <div class="product-grid">
+      {%- if collection != blank -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product, show_add_button: section.settings.show_add_button, show_description: section.settings.show_description %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="product-card">
+            <div class="product-media">
+              <svg viewBox="0 0 200 200"><rect x="30" y="30" width="140" height="140" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
+            </div>
+            <div class="product-info">
+              <div class="pi-top"><h3>{{ 'onboarding.product_title' | t }}</h3></div>
+              <div class="pi-bottom"><span class="price">{{ 1999 | money }}</span></div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "tag": "section",
+  "class": "section-featured-collection",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Section tag", "default": "Catalog" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Ready To Cut." },
+    { "type": "textarea", "id": "description", "label": "Description" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "min": 2, "max": 12, "step": 1, "label": "Products to show", "default": 6 },
+    { "type": "checkbox", "id": "show_add_button", "label": "Show add to cart button", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show description", "default": false }
+  ],
+  "presets": [{ "name": "Featured collection" }]
+}
+{% endschema %}
