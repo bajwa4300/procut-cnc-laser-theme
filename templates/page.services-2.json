@@ -11,7 +11,33 @@
   "sections": {
     "main": {
       "type": "services-list",
-      "settings": {}
+      "blocks": {
+        "service_KtqXnX": {
+          "type": "service",
+          "settings": {
+            "number": "01",
+            "title": "CNC Laser Cutting",
+            "description": "Precision sheet cutting for mechanical parts, brackets and custom components.",
+            "materials": "MS · STEEL · GOLDEN SS · ALUMINIUM",
+            "price": "From PKR 450",
+            "price_unit": "per kg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_KtqXnX"
+      ],
+      "settings": {
+        "title": "What We Cut.",
+        "subtitle": "06 DISCIPLINES — ONE FIBER LASER — RATTA ROAD, RAWALPINDI",
+        "show_cta": true,
+        "cta_tag": "Not Sure?",
+        "cta_title": "Not Sure Which?",
+        "cta_description": "Send a photo of what you need cut. We quote most jobs same day on WhatsApp.",
+        "cta_whatsapp_label": "WHATSAPP US →",
+        "cta_contact_label": "VISIT WORKSHOP"
+      }
     }
   },
   "order": [
