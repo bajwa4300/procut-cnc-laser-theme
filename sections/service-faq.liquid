@@ -1,0 +1,48 @@
+<section class="section" id="shopify-section-{{ section.id }}">
+  <div class="section-head wrap">
+    <div>
+      {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+  </div>
+  <div class="svd-faq wrap">
+    {%- for block in section.blocks -%}
+      <div class="faq-item" {{ block.shopify_attributes }}>
+        <h5>{{ block.settings.question }} <span>+</span></h5>
+        <p>{{ block.settings.answer }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Service FAQ",
+  "tag": "section",
+  "class": "section-service-faq",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Questions" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Before You Order." }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Answer." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Can you cut any ayat or name?", "answer": "Yes — we vectorize any Arabic text, English name or dua as a single continuous line. A proof is sent before cutting." } },
+        { "type": "faq", "settings": { "question": "What sizes are available?", "answer": "From 12\" wall pieces to 6ft facade panels. Size is confirmed in the quote and proof stage." } },
+        { "type": "faq", "settings": { "question": "Do you install?", "answer": "Wall mounting hardware is included. On-site installation across Rawalpindi/Islamabad can be arranged on request." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

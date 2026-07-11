@@ -1,0 +1,52 @@
+<section class="section svd-process service-process" id="shopify-section-{{ section.id }}">
+  <div class="section-head wrap">
+    <div>
+      {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.description != blank -%}<p>{{ section.settings.description }}</p>{%- endif -%}
+  </div>
+  <div class="sp-row wrap">
+    {%- for block in section.blocks -%}
+      <div class="sp-step" {{ block.shopify_attributes }}>
+        <span class="pnum">{{ block.settings.number }}</span>
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Service process",
+  "tag": "section",
+  "class": "section-service-process",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Text To Steel" },
+    { "type": "text", "id": "title", "label": "Title", "default": "How We Cut It." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Three steps from your reference to a finished steel piece." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service process",
+      "blocks": [
+        { "type": "step", "settings": { "number": "01", "title": "Send Reference", "description": "Share a photo, scan or typed text. We trace it as a single continuous vector line." } },
+        { "type": "step", "settings": { "number": "02", "title": "Approve Proof", "description": "We send a PDF proof showing exact stroke width and size before cutting." } },
+        { "type": "step", "settings": { "number": "03", "title": "Laser Cut & Finish", "description": "Cut on fiber laser, deburred, coated if needed, and ready for wall mount." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

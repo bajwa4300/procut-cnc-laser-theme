@@ -1,0 +1,54 @@
+<section class="svd-gallery" id="shopify-section-{{ section.id }}">
+  <div class="section-head wrap">
+    <div>
+      {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.description != blank -%}<p>{{ section.settings.description }}</p>{%- endif -%}
+  </div>
+  <div class="gal-grid wrap">
+    {%- for block in section.blocks -%}
+      <div class="gal-item" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 600 | image_tag: alt: block.settings.caption }}
+        {%- else -%}
+          <svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="140" height="140" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Service gallery",
+  "tag": "section",
+  "class": "section-service-gallery",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Reference Work" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Pattern Library." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Common calligraphy styles we cut regularly. Send your own verse or name for a custom vector proof." }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Gallery image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "caption", "label": "Caption" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Service gallery",
+      "blocks": [
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

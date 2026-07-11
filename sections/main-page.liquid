@@ -1,0 +1,13 @@
+<div class="page-content wrap" style="padding:150px 32px 90px;">
+  <h1 style="font-family:var(--display);font-size:clamp(40px,6vw,72px);text-transform:uppercase;margin-bottom:24px;">{{ page.title }}</h1>
+  <div class="rte" style="font-size:15px;line-height:1.7;color:var(--steel);max-width:800px;">{{ page.content }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": []
+}
+{% endschema %}

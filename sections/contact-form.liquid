@@ -1,0 +1,182 @@
+<nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}">
+  <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a><span class="sep">/</span>
+  <span class="current">{{ 'general.contact' | t }}</span>
+</nav>
+
+<div class="ct-head">
+  <h1>{{ section.settings.title }}</h1>
+  {%- if section.settings.subtitle != blank -%}
+    <p>{{ section.settings.subtitle }}</p>
+  {%- endif -%}
+</div>
+
+<div class="ct-body">
+  <div class="ct-form-wrap">
+    <h2>{{ section.settings.form_title }}</h2>
+    {%- if section.settings.form_subtitle != blank -%}
+      <p class="sub">{{ section.settings.form_subtitle }}</p>
+    {%- endif -%}
+
+    {%- form 'contact', id: 'ContactForm' -%}
+      {%- if form.posted_successfully? -%}
+        <div class="form-success" id="formOk">
+          ● {{ 'templates.contact.form.post_success' | t }}
+        </div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="form-errors">
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <div class="field-row">
+        <div class="field">
+          <label for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <input type="text" id="ContactForm-name" name="contact[name]" placeholder="{{ 'templates.contact.form.name_placeholder' | t }}" required>
+        </div>
+        <div class="field">
+          <label for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
+          <input type="tel" id="ContactForm-phone" name="contact[phone]" placeholder="{{ 'templates.contact.form.phone_placeholder' | t }}" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ContactForm-email">{{ 'templates.contact.form.email' | t }}</label>
+        <input type="email" id="ContactForm-email" name="contact[email]" placeholder="{{ 'templates.contact.form.email_placeholder' | t }}">
+      </div>
+
+      <div class="field">
+        <label>{{ 'templates.contact.form.service_type' | t }}</label>
+        <div class="radio-row" data-service-pills>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'service_type' -%}
+              <button type="button" class="radio-pill{% if forloop.first %} active{% endif %}" data-value="{{ block.settings.value }}" {{ block.shopify_attributes }}>
+                {{ block.settings.label }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <input type="hidden" name="contact[service_type]" id="ContactForm-service" value="{{ section.blocks.first.settings.value }}">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="ContactForm-material">{{ 'templates.contact.form.material' | t }}</label>
+          <select id="ContactForm-material" name="contact[material]">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'material_option' -%}
+                <option value="{{ block.settings.value }}">{{ block.settings.label }}</option>
+              {%- endif -%}
+            {%- endfor -%}
+          </select>
+        </div>
+        <div class="field">
+          <label for="ContactForm-size">{{ 'templates.contact.form.size' | t }}</label>
+          <input type="text" id="ContactForm-size" name="contact[size]" placeholder="{{ 'templates.contact.form.size_placeholder' | t }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="ContactForm-body">{{ 'templates.contact.form.details' | t }}</label>
+        <textarea id="ContactForm-body" name="contact[body]" placeholder="{{ 'templates.contact.form.details_placeholder' | t }}"></textarea>
+      </div>
+
+      <div class="form-foot">
+        <button type="submit" class="btn solid">{{ 'templates.contact.form.submit' | t }}</button>
+        <span class="note">{{ section.settings.form_note }}</span>
+      </div>
+    {%- endform -%}
+  </div>
+
+  <div class="ct-info">
+    <div class="info-block">
+      <h5>{{ 'templates.contact.info.direct' | t }}</h5>
+      <div class="info-row"><span class="k">WhatsApp</span><span class="v"><a href="https://wa.me/{{ settings.whatsapp_number }}">{{ settings.phone }}</a></span></div>
+      <div class="info-row"><span class="k">{{ 'templates.contact.info.call' | t }}</span><span class="v"><a href="tel:{{ settings.phone | replace: '-', '' }}">{{ settings.phone }}</a></span></div>
+      <div class="info-row"><span class="k">Email</span><span class="v"><a href="mailto:{{ settings.email }}">{{ settings.email }}</a></span></div>
+      {%- if settings.social_facebook != blank -%}
+        <div class="info-row"><span class="k">Facebook</span><span class="v"><a href="{{ settings.social_facebook }}">ProCut CNC Laser</a></span></div>
+      {%- endif -%}
+    </div>
+
+    <div class="info-block">
+      <h5>{{ 'templates.contact.info.address' | t }}</h5>
+      <div class="map-box">
+        {%- if section.settings.map_image != blank -%}
+          {{ section.settings.map_image | image_url: width: 800 | image_tag: alt: settings.workshop_address }}
+        {%- else -%}
+          <svg viewBox="0 0 400 250" aria-hidden="true"><g stroke="#c7c7c2" stroke-width="1"><path d="M0 40h400M0 90h400M0 140h400M0 190h400M60 0v250M140 0v250M220 0v250M300 0v250"/></g><path d="M0 60 L400 60" stroke="#8d9094" stroke-width="2"/><path d="M180 0 L200 250" stroke="#8d9094" stroke-width="2"/><circle cx="200" cy="120" r="8" fill="#ff2b1f"/><path d="M200 120 v-30" stroke="#ff2b1f" stroke-width="2"/><circle cx="200" cy="90" r="3" fill="#ff2b1f"/><text x="210" y="115" font-family="JetBrains Mono" font-size="10" fill="#1a1a1a">PROCUT WORKSHOP</text></svg>
+        {%- endif -%}
+      </div>
+      <div class="map-cta">
+        <span>{{ settings.workshop_address | newline_to_br | strip_html }}</span>
+        {%- if section.settings.map_directions_url != blank -%}
+          <a href="{{ section.settings.map_directions_url }}" target="_blank" rel="noopener">{{ 'templates.contact.info.directions' | t }} →</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h5>{{ 'templates.contact.info.hours' | t }}</h5>
+      <div class="hours-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'hours' -%}
+            <div class="day" {{ block.shopify_attributes }}>{{ block.settings.day }}</div>
+            <div class="time">{{ block.settings.time }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ct-cta-strip">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'cta_tile' -%}
+      <a href="{{ block.settings.url }}" class="cta-tile" {{ block.shopify_attributes }}>
+        <span class="tag">{{ block.settings.tag }}</span>
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.description }}</p>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "class": "section-contact-form",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Page title", "default": "Talk To Us." },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "M. HASSAN — RATTA ROAD, RAWALPINDI — MOST JOBS QUOTED SAME DAY" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Request a Quote" },
+    { "type": "textarea", "id": "form_subtitle", "label": "Form subtitle", "default": "Tell us what you need cut. Attach a photo or sketch if you have one — WhatsApp works too if that's easier." },
+    { "type": "text", "id": "form_note", "label": "Form note", "default": "We reply by WhatsApp or call within one working day." },
+    { "type": "image_picker", "id": "map_image", "label": "Map image" },
+    { "type": "url", "id": "map_directions_url", "label": "Directions URL" }
+  ],
+  "blocks": [
+    { "type": "service_type", "name": "Service type pill", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "Calligraphy" },
+      { "type": "text", "id": "value", "label": "Value", "default": "Calligraphy" }
+    ]},
+    { "type": "material_option", "name": "Material option", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "Mild Steel" },
+      { "type": "text", "id": "value", "label": "Value", "default": "Mild Steel" }
+    ]},
+    { "type": "hours", "name": "Hours row", "settings": [
+      { "type": "text", "id": "day", "label": "Day", "default": "Monday – Saturday" },
+      { "type": "text", "id": "time", "label": "Time", "default": "9:00 AM – 7:00 PM" }
+    ]},
+    { "type": "cta_tile", "name": "CTA tile", "settings": [
+      { "type": "text", "id": "tag", "label": "Tag", "default": "Fastest" },
+      { "type": "text", "id": "title", "label": "Title", "default": "WhatsApp Us" },
+      { "type": "textarea", "id": "description", "label": "Description" },
+      { "type": "url", "id": "url", "label": "URL" }
+    ]}
+  ],
+  "presets": [{ "name": "Contact form" }]
+}
+{% endschema %}

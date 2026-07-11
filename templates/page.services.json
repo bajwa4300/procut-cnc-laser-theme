@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": {
+      "type": "services-list"
+    }
+  },
+  "order": ["main"]
+}

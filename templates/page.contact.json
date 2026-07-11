@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "main": {
+      "type": "contact-form",
+      "blocks": {
+        "svc-1": { "type": "service_type", "settings": { "label": "Calligraphy", "value": "Calligraphy" } },
+        "svc-2": { "type": "service_type", "settings": { "label": "Gate / Door", "value": "Gate / Door" } },
+        "svc-3": { "type": "service_type", "settings": { "label": "Railing", "value": "Railing" } },
+        "svc-4": { "type": "service_type", "settings": { "label": "Elevation", "value": "Elevation" } },
+        "svc-5": { "type": "service_type", "settings": { "label": "Partition", "value": "Partition" } },
+        "svc-6": { "type": "service_type", "settings": { "label": "Mechanical Cutting", "value": "Mechanical Cutting" } },
+        "svc-7": { "type": "service_type", "settings": { "label": "Not Sure", "value": "Not Sure" } },
+        "mat-1": { "type": "material_option", "settings": { "label": "Mild Steel", "value": "Mild Steel" } },
+        "mat-2": { "type": "material_option", "settings": { "label": "Stainless Steel", "value": "Stainless Steel" } },
+        "mat-3": { "type": "material_option", "settings": { "label": "Golden SS", "value": "Golden SS" } },
+        "mat-4": { "type": "material_option", "settings": { "label": "Aluminium", "value": "Aluminium" } },
+        "mat-5": { "type": "material_option", "settings": { "label": "Not sure yet", "value": "Not sure yet" } },
+        "hrs-1": { "type": "hours", "settings": { "day": "Monday – Saturday", "time": "9:00 AM – 7:00 PM" } },
+        "hrs-2": { "type": "hours", "settings": { "day": "Sunday", "time": "Closed" } },
+        "hrs-3": { "type": "hours", "settings": { "day": "WhatsApp Replies", "time": "7 Days" } },
+        "cta-1": { "type": "cta_tile", "settings": { "tag": "Fastest", "title": "WhatsApp Us", "description": "Send a photo of what you need cut and get a rough price back same day.", "url": "https://wa.me/923215568112" } },
+        "cta-2": { "type": "cta_tile", "settings": { "tag": "Ready-Made", "title": "Browse The Shop", "description": "Calligraphy pieces, panels and railing already have fixed prices — order directly.", "url": "/collections/all" } },
+        "cta-3": { "type": "cta_tile", "settings": { "tag": "Custom", "title": "See All Services", "description": "Not sure which process fits your job? Compare all six disciplines first.", "url": "/pages/services" } }
+      },
+      "block_order": ["svc-1","svc-2","svc-3","svc-4","svc-5","svc-6","svc-7","mat-1","mat-2","mat-3","mat-4","mat-5","hrs-1","hrs-2","hrs-3","cta-1","cta-2","cta-3"]
+    }
+  },
+  "order": ["main"]
+}

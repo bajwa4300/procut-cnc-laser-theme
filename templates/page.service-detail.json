@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "hero": { "type": "service-detail-hero" },
+    "gallery": { "type": "service-gallery" },
+    "process": { "type": "service-process" },
+    "faq": { "type": "service-faq" },
+    "products": {
+      "type": "featured-collection",
+      "settings": {
+        "tag": "Relevant Products",
+        "title": "From The Catalog.",
+        "products_to_show": 3,
+        "show_add_button": true
+      }
+    }
+  },
+  "order": ["hero", "gallery", "process", "faq", "products"]
+}
