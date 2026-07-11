@@ -1,30 +1,166 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
+        "eyebrow": "FIBER LASER · RAWALPINDI, PK · EST. WORKSHOP",
+        "headline_line1": "STEEL DOESN'T",
+        "headline_cutline": "ARGUE.",
+        "show_cutline_svg": true,
+        "subheadline": "It gets cut exactly where the beam says. Gates, railings, calligraphy, elevation panels — drawn once, cut precise, every time.",
+        "cta_primary_label": "SHOP THE CATALOG →",
         "cta_primary_url": "/collections/all",
-        "cta_secondary_url": "/pages/contact"
+        "cta_secondary_label": "REQUEST A QUOTE",
+        "cta_secondary_url": "/pages/contact",
+        "machine_specs": "",
+        "show_crosshairs": true
       }
     },
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "item-1": { "type": "item", "settings": { "text": "MILD STEEL" } },
-        "item-2": { "type": "item", "settings": { "text": "STAINLESS STEEL" } },
-        "item-3": { "type": "item", "settings": { "text": "GOLDEN SS" } },
-        "item-4": { "type": "item", "settings": { "text": "ALUMINIUM" } },
-        "item-5": { "type": "item", "settings": { "text": "GATES & DOORS" } },
-        "item-6": { "type": "item", "settings": { "text": "RAILINGS" } },
-        "item-7": { "type": "item", "settings": { "text": "ISLAMIC CALLIGRAPHY" } },
-        "item-8": { "type": "item", "settings": { "text": "PARTITION PANELS" } }
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "text": "MILD STEEL",
+            "accent": false
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "text": "STAINLESS STEEL",
+            "accent": false
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "text": "GOLDEN SS",
+            "accent": false
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "text": "ALUMINIUM",
+            "accent": false
+          }
+        },
+        "item-5": {
+          "type": "item",
+          "settings": {
+            "text": "GATES & DOORS",
+            "accent": false
+          }
+        },
+        "item-6": {
+          "type": "item",
+          "settings": {
+            "text": "RAILINGS",
+            "accent": false
+          }
+        },
+        "item-7": {
+          "type": "item",
+          "settings": {
+            "text": "ISLAMIC CALLIGRAPHY",
+            "accent": false
+          }
+        },
+        "item-8": {
+          "type": "item",
+          "settings": {
+            "text": "PARTITION PANELS",
+            "accent": false
+          }
+        }
       },
-      "block_order": ["item-1", "item-2", "item-3", "item-4", "item-5", "item-6", "item-7", "item-8"]
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3",
+        "item-4",
+        "item-5",
+        "item-6",
+        "item-7",
+        "item-8"
+      ],
+      "settings": {}
     },
-    "services": { "type": "services-grid" },
-    "materials": { "type": "materials-strip" },
-    "process": { "type": "process-steps" },
-    "stats": { "type": "stats" }
+    "services": {
+      "type": "services-grid",
+      "settings": {
+        "anchor": "services",
+        "tag": "Capabilities",
+        "title": "What We Cut.",
+        "description": "Six disciplines, one beam. Every job nested, cut and finished in-house at the Ratta Road workshop."
+      }
+    },
+    "materials": {
+      "type": "materials-strip",
+      "blocks": {
+        "material_LUcDrk": {
+          "type": "material",
+          "settings": {
+            "name": "Mild Steel",
+            "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)",
+            "spec": "1MM – 6MM SHEET"
+          }
+        }
+      },
+      "block_order": [
+        "material_LUcDrk"
+      ],
+      "settings": {
+        "anchor": "materials",
+        "tag": "Raw Stock",
+        "title": "Cut From.",
+        "description": "Every material carries its own cut settings — beam power, speed, and gas assist tuned per sheet."
+      }
+    },
+    "process": {
+      "type": "process-steps",
+      "blocks": {
+        "step_UdRtkG": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Step",
+            "description": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_UdRtkG"
+      ],
+      "settings": {
+        "anchor": "process",
+        "tag": "How It's Made",
+        "title": "Design To Delivery.",
+        "description": "Four steps, same sequence for a single bracket or a full gate."
+      }
+    },
+    "stats": {
+      "type": "stats",
+      "settings": {}
+    }
   },
-  "order": ["hero", "marquee", "services", "materials", "process", "stats"]
+  "order": [
+    "hero",
+    "marquee",
+    "services",
+    "materials",
+    "process",
+    "stats"
+  ]
 }
