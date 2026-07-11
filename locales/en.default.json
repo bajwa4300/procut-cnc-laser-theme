@@ -1,0 +1,95 @@
+{
+  "general": {
+    "home": "Home",
+    "shop": "Shop",
+    "services": "Services",
+    "process": "Process",
+    "contact": "Contact",
+    "cart": "CART",
+    "menu": "Menu",
+    "navigation": "Main navigation",
+    "breadcrumb": "Breadcrumb",
+    "workshop": "Workshop",
+    "whatsapp_us": "WHATSAPP US",
+    "continue_shopping": "Continue shopping"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "ADD TO CART",
+      "sold_out": "SOLD OUT",
+      "in_stock": "IN STOCK — SHIPS IN 3–5 DAYS",
+      "media": "Product image",
+      "quantity": {
+        "label": "Quantity",
+        "increase": "Increase quantity",
+        "decrease": "Decrease quantity"
+      },
+      "price": {
+        "from_price_html": "From {{ price }}"
+      }
+    },
+    "badge": {
+      "bestseller": "BESTSELLER",
+      "made_to_order": "MADE TO ORDER",
+      "b2b": "B2B"
+    }
+  },
+  "collections": {
+    "product_count": "{{ count }} PIECES",
+    "items": "ITEMS",
+    "empty": "No products in this collection yet."
+  },
+  "sections": {
+    "cart": {
+      "title": "Your Cart.",
+      "item_count": "{{ count }} ITEMS IN CART",
+      "empty": "Your cart is empty.",
+      "summary": "Order Summary",
+      "subtotal": "Subtotal",
+      "delivery": "Delivery (est.)",
+      "total": "Total",
+      "checkout": "PROCEED TO CHECKOUT",
+      "remove": "Remove item",
+      "promo_placeholder": "PROMO CODE",
+      "promo_apply": "APPLY",
+      "cart_error": "There was an error updating your cart.",
+      "quantity_error": "You can only add {{ quantity }} of this item.",
+      "headings": {
+        "product": "Product",
+        "price": "Price",
+        "quantity": "Qty",
+        "total": "Total"
+      }
+    }
+  },
+  "templates": {
+    "contact": {
+      "form": {
+        "name": "Full Name",
+        "name_placeholder": "Your name",
+        "phone": "Phone / WhatsApp",
+        "phone_placeholder": "03XX-XXXXXXX",
+        "email": "Email (optional)",
+        "email_placeholder": "you@example.com",
+        "service_type": "What Do You Need?",
+        "material": "Material",
+        "size": "Approx. Size",
+        "size_placeholder": "e.g. 24\" or 4×8 ft",
+        "details": "Details",
+        "details_placeholder": "Describe the piece, the pattern, where it'll be installed — whatever helps us quote accurately.",
+        "submit": "SEND REQUEST →",
+        "post_success": "REQUEST RECEIVED — WE'LL REPLY BY WHATSAPP OR CALL WITHIN ONE WORKING DAY."
+      },
+      "info": {
+        "direct": "Direct Contact",
+        "call": "Call",
+        "address": "Workshop Address",
+        "hours": "Working Hours",
+        "directions": "GET DIRECTIONS"
+      }
+    }
+  },
+  "onboarding": {
+    "product_title": "Sample product"
+  }
+}
