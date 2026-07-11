@@ -1,0 +1,73 @@
+<section class="section" id="{{ section.settings.anchor | default: 'services' }}">
+  <div class="section-head">
+    <div>
+      {%- if section.settings.tag != blank -%}
+        <span class="section-tag">{{ section.settings.tag }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.description != blank -%}
+      <p>{{ section.settings.description }}</p>
+    {%- endif -%}
+  </div>
+  <div class="services-grid">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.link != blank -%}
+        <a href="{{ block.settings.link }}" class="service-card" {{ block.shopify_attributes }}>
+      {%- else -%}
+        <div class="service-card" {{ block.shopify_attributes }}>
+      {%- endif -%}
+        <span class="service-num">{{ block.settings.number }}</span>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.description }}</p>
+        {%- if block.settings.materials != blank -%}
+          <div class="service-mat">{{ block.settings.materials }}</div>
+        {%- endif -%}
+      {%- if block.settings.link != blank -%}
+        </a>
+      {%- else -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Services grid",
+  "tag": "section",
+  "class": "section-services-grid",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor ID", "default": "services" },
+    { "type": "text", "id": "tag", "label": "Section tag", "default": "Capabilities" },
+    { "type": "text", "id": "title", "label": "Title", "default": "What We Cut." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Six disciplines, one beam. Every job nested, cut and finished in-house at the Ratta Road workshop." }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Service" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "materials", "label": "Material tags" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services grid",
+      "blocks": [
+        { "type": "service", "settings": { "number": "01", "title": "CNC Laser Cutting", "description": "Precision sheet cutting for mechanical parts, brackets and custom components.", "materials": "MS · STEEL · GOLDEN SS · ALUMINIUM" } },
+        { "type": "service", "settings": { "number": "02", "title": "Gates & Doors", "description": "Custom-cut security gates and door panels, from geometric to ornamental patterns.", "materials": "MS SHEET · 2–4MM" } },
+        { "type": "service", "settings": { "number": "03", "title": "Railing & Stairs", "description": "Structural and decorative railing panels for staircases, balconies and balustrades.", "materials": "MS · SS" } },
+        { "type": "service", "settings": { "number": "04", "title": "Front Elevation", "description": "Facade cladding and jaali-style screens that turn a wall into a lit-through pattern.", "materials": "ALUMINIUM · GOLDEN SS" } },
+        { "type": "service", "settings": { "number": "05", "title": "Islamic Calligraphy", "description": "Ayat, names and duas cut clean from steel — for walls, clocks and mosque interiors.", "materials": "MS · GOLDEN SS" } },
+        { "type": "service", "settings": { "number": "06", "title": "Partition Panels", "description": "Modular jaali dividers that split a room without closing it off.", "materials": "MS · ALUMINIUM" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

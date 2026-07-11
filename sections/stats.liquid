@@ -1,0 +1,39 @@
+<section class="section section-stats" id="shopify-section-{{ section.id }}">
+  <div class="stats">
+    {%- for block in section.blocks -%}
+      <div class="stat" {{ block.shopify_attributes }}>
+        <div class="num">{{ block.settings.number }}</div>
+        <div class="lbl">{{ block.settings.label }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stats",
+  "tag": "section",
+  "class": "section-stats",
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "0" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "±0.1", "label": "MM Cut Tolerance" } },
+        { "type": "stat", "settings": { "number": "4", "label": "Materials Mastered" } },
+        { "type": "stat", "settings": { "number": "1500W", "label": "Fiber Laser Power" } },
+        { "type": "stat", "settings": { "number": "24H", "label": "Typical Quote Turnaround" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+<section class="materials section-materials" id="{{ section.settings.anchor | default: 'materials' }}">
+  <div class="section-head">
+    <div>
+      {%- if section.settings.tag != blank -%}
+        <span class="section-tag">{{ section.settings.tag }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.description != blank -%}
+      <p>{{ section.settings.description }}</p>
+    {%- endif -%}
+  </div>
+  <div class="mat-grid">
+    {%- for block in section.blocks -%}
+      <div class="mat-card" {{ block.shopify_attributes }}>
+        <div class="swatch" style="background:{{ block.settings.swatch_color }};"></div>
+        <h4>{{ block.settings.name }}</h4>
+        <p>{{ block.settings.spec }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Materials strip",
+  "tag": "section",
+  "class": "section-materials-strip",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor ID", "default": "materials" },
+    { "type": "text", "id": "tag", "label": "Section tag", "default": "Raw Stock" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Cut From." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Every material carries its own cut settings — beam power, speed, and gas assist tuned per sheet." }
+  ],
+  "blocks": [
+    {
+      "type": "material",
+      "name": "Material",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Mild Steel" },
+        { "type": "text", "id": "swatch_color", "label": "Swatch CSS background", "default": "linear-gradient(135deg, #8a8d92, #5a5d61)" },
+        { "type": "text", "id": "spec", "label": "Spec line", "default": "1MM – 6MM SHEET" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Materials strip",
+      "blocks": [
+        { "type": "material", "settings": { "name": "Mild Steel", "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)", "spec": "1MM – 6MM SHEET" } },
+        { "type": "material", "settings": { "name": "Stainless Steel", "swatch_color": "linear-gradient(135deg, #d7d7d4, #a8a8a4)", "spec": "MIRROR / MATTE" } },
+        { "type": "material", "settings": { "name": "Golden SS", "swatch_color": "linear-gradient(135deg, #c9a668, #8a6f3f)", "spec": "PVD COATED" } },
+        { "type": "material", "settings": { "name": "Aluminium", "swatch_color": "linear-gradient(135deg, #e6e6e3, #bcbcb8)", "spec": "1MM – 4MM SHEET" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "cta_primary_url": "/collections/all",
+        "cta_secondary_url": "/pages/contact"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "text": "MILD STEEL" } },
+        "item-2": { "type": "item", "settings": { "text": "STAINLESS STEEL" } },
+        "item-3": { "type": "item", "settings": { "text": "GOLDEN SS" } },
+        "item-4": { "type": "item", "settings": { "text": "ALUMINIUM" } },
+        "item-5": { "type": "item", "settings": { "text": "GATES & DOORS" } },
+        "item-6": { "type": "item", "settings": { "text": "RAILINGS" } },
+        "item-7": { "type": "item", "settings": { "text": "ISLAMIC CALLIGRAPHY" } },
+        "item-8": { "type": "item", "settings": { "text": "PARTITION PANELS" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4", "item-5", "item-6", "item-7", "item-8"]
+    },
+    "services": { "type": "services-grid" },
+    "materials": { "type": "materials-strip" },
+    "process": { "type": "process-steps" },
+    "stats": { "type": "stats" }
+  },
+  "order": ["hero", "marquee", "services", "materials", "process", "stats"]
+}

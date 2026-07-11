@@ -1,0 +1,66 @@
+<section class="hero" id="shopify-section-{{ section.id }}">
+  {%- if section.settings.show_crosshairs -%}
+    <div class="crosshair tl"></div>
+    <div class="crosshair tr"></div>
+    <div class="crosshair bl"></div>
+    <div class="crosshair br"></div>
+  {%- endif -%}
+
+  {%- if section.settings.eyebrow != blank -%}
+    <div class="hero-eyebrow">
+      <span class="dot"></span>{{ section.settings.eyebrow }}
+    </div>
+  {%- endif -%}
+
+  <h1>
+    {{ section.settings.headline_line1 }}
+    {%- if section.settings.headline_cutline != blank -%}
+      <br><span class="cutline">{{ section.settings.headline_cutline }}
+        {%- if section.settings.show_cutline_svg -%}
+          <svg viewBox="0 0 620 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0,60 L610,60"/></svg>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+  </h1>
+
+  <div class="hero-sub">
+    {%- if section.settings.subheadline != blank -%}
+      <p>{{ section.settings.subheadline }}</p>
+    {%- endif -%}
+    <div class="hero-ctas">
+      {%- if section.settings.cta_primary_label != blank -%}
+        <a href="{{ section.settings.cta_primary_url }}" class="btn solid">{{ section.settings.cta_primary_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta_secondary_label != blank -%}
+        <a href="{{ section.settings.cta_secondary_url }}" class="btn ghost">{{ section.settings.cta_secondary_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- assign specs = section.settings.machine_specs | default: settings.machine_specs -%}
+  {%- if specs != blank -%}
+    <div class="hero-spec">{{ specs | newline_to_br }}</div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FIBER LASER · RAWALPINDI, PK · EST. WORKSHOP" },
+    { "type": "text", "id": "headline_line1", "label": "Headline line 1", "default": "STEEL DOESN'T" },
+    { "type": "text", "id": "headline_cutline", "label": "Headline cutline word", "default": "ARGUE." },
+    { "type": "checkbox", "id": "show_cutline_svg", "label": "Show laser cutline animation", "default": true },
+    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "It gets cut exactly where the beam says. Gates, railings, calligraphy, elevation panels — drawn once, cut precise, every time." },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary CTA label", "default": "SHOP THE CATALOG →" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary CTA URL" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary CTA label", "default": "REQUEST A QUOTE" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary CTA URL" },
+    { "type": "textarea", "id": "machine_specs", "label": "Machine specs sidebar" },
+    { "type": "checkbox", "id": "show_crosshairs", "label": "Show crosshair marks", "default": true }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

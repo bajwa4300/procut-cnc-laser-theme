@@ -1,0 +1,59 @@
+<section class="section process" id="{{ section.settings.anchor | default: 'process' }}">
+  <div class="section-head">
+    <div>
+      {%- if section.settings.tag != blank -%}
+        <span class="section-tag">{{ section.settings.tag }}</span>
+      {%- endif -%}
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    {%- if section.settings.description != blank -%}
+      <p>{{ section.settings.description }}</p>
+    {%- endif -%}
+  </div>
+  <div class="process-row">
+    {%- for block in section.blocks -%}
+      <div class="process-step" {{ block.shopify_attributes }}>
+        <span class="pnum">{{ block.settings.number }}</span>
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.description }}</p>
+        {%- unless forloop.last -%}<span class="process-arrow">→</span>{%- endunless -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Process steps",
+  "tag": "section",
+  "class": "section-process-steps",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Section anchor ID", "default": "process" },
+    { "type": "text", "id": "tag", "label": "Section tag", "default": "How It's Made" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Design To Delivery." },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Four steps, same sequence for a single bracket or a full gate." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Step number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Step" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process steps",
+      "blocks": [
+        { "type": "step", "settings": { "number": "01", "title": "Send Design", "description": "Share a photo, sketch or CAD file — or pick a pattern from our catalog." } },
+        { "type": "step", "settings": { "number": "02", "title": "Nest & Quote", "description": "We vectorize the pattern, nest it on sheet, and confirm size and price." } },
+        { "type": "step", "settings": { "number": "03", "title": "Laser Cut", "description": "Fiber laser cuts to ±0.10mm tolerance on your chosen material." } },
+        { "type": "step", "settings": { "number": "04", "title": "Finish & Deliver", "description": "Deburred, coated if needed, and shipped or installed across Rawalpindi/Islamabad." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
