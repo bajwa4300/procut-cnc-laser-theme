@@ -1,0 +1,55 @@
+<header class="site-header{% if section.settings.dark_header %} dark{% endif %}" id="shopify-section-{{ section.id }}">
+  {% render 'logo' %}
+
+  <nav class="site-nav" aria-label="{{ 'general.navigation' | t }}">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav-{{ section.id }}">
+      <span class="visually-hidden">{{ 'general.menu' | t }}</span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <ul id="mobile-nav-{{ section.id }}">
+      {%- if section.settings.menu != blank -%}
+        {%- for link in linklists[section.settings.menu].links -%}
+          <li>
+            <a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li><a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a></li>
+        <li><a href="/pages/services">{{ 'general.services' | t }}</a></li>
+        <li><a href="{{ routes.root_url }}#process">{{ 'general.process' | t }}</a></li>
+        <li><a href="/pages/contact">{{ 'general.contact' | t }}</a></li>
+      {%- endif -%}
+    </ul>
+  </nav>
+
+  <div class="nav-right">
+    <a href="{{ routes.cart_url }}" class="cart-btn" id="cart-icon-bubble">
+      {{ 'general.cart' | t }}
+      <span class="cart-count" data-cart-count>({{ cart.item_count }})</span>
+    </a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "dark_header",
+      "label": "Dark header style",
+      "default": false
+    }
+  ]
+}
+{% endschema %}

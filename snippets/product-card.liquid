@@ -1,0 +1,52 @@
+{%- liquid
+  assign card_product = product
+  if card_product == blank
+    assign card_product = product_ref
+  endif
+  assign sku = card_product.selected_or_first_available_variant.sku
+  assign unit_text = card_product.metafields.custom.unit_text
+-%}
+
+<div class="product-card" data-product-card>
+  <a href="{{ card_product.url }}" class="product-card-link">
+    <div class="product-media">
+      {%- if card_product.tags contains 'bestseller' -%}
+        <span class="product-tag laser">{{ 'products.badge.bestseller' | t }}</span>
+      {%- elsif card_product.tags contains 'made-to-order' -%}
+        <span class="product-tag">{{ 'products.badge.made_to_order' | t }}</span>
+      {%- elsif card_product.tags contains 'b2b' -%}
+        <span class="product-tag">{{ 'products.badge.b2b' | t }}</span>
+      {%- endif -%}
+
+      {%- if card_product.featured_image -%}
+        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title }}
+      {%- else -%}
+        {% render 'product-fallback-svg', product: card_product %}
+      {%- endif -%}
+    </div>
+    <div class="product-info">
+      <div class="pi-top">
+        <h3>{{ card_product.title }}</h3>
+        {%- if sku != blank -%}
+          <span class="code">{{ sku }}</span>
+        {%- endif -%}
+      </div>
+      {%- if card_product.description != blank and show_description -%}
+        <p class="desc">{{ card_product.description | strip_html | truncate: 120 }}</p>
+      {%- endif -%}
+      <div class="pi-bottom">
+        {% render 'price', product: card_product, show_from: true, unit_text: unit_text %}
+      </div>
+    </div>
+  </a>
+  {%- if show_add_button -%}
+    <div class="product-card-actions">
+      {%- form 'product', card_product, class: 'product-card-form', data-product-id: card_product.id -%}
+        <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="add-btn" name="add"{% unless card_product.selected_or_first_available_variant.available %} disabled{% endunless %}>
+          {{ 'products.product.add_to_cart' | t }}
+        </button>
+      {%- endform -%}
+    </div>
+  {%- endif -%}
+</div>

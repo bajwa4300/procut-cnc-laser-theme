@@ -1,0 +1,20 @@
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+  assign price = target.price
+  assign money_price = price | money
+-%}
+
+<span class="price{% if price_class %} {{ price_class }}{% endif %}">
+  {%- if show_from and product.price_varies -%}
+    {{ 'products.product.price.from_price_html' | t: price: money_price }}
+  {%- else -%}
+    {{ money_price }}
+  {%- endif -%}
+  {%- if unit_text != blank -%}
+    <small>{{ unit_text }}</small>
+  {%- endif -%}
+</span>

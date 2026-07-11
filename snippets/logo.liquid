@@ -1,0 +1,15 @@
+<a href="{{ routes.root_url }}" class="logo-mark" aria-label="{{ shop.name }}">
+  {%- if settings.logo != blank -%}
+    {{ settings.logo | image_url: width: 200 | image_tag: alt: shop.name, class: 'logo-image' }}
+  {%- else -%}
+    <span class="logo-word">
+      <span class="pro">PRO</span>
+      <span class="cutwrap">
+        CUT
+        <span class="spark-beam"></span>
+        <span class="spark-burst"></span>
+      </span>
+    </span>
+    <span class="logo-tagline">{{ settings.logo_tagline | default: 'CNC LASER' }}</span>
+  {%- endif -%}
+</a>

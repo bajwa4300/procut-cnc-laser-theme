@@ -1,0 +1,12 @@
+{%- if breadcrumb_items != blank -%}
+  <nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}">
+    {%- for item in breadcrumb_items -%}
+      {%- unless forloop.first -%}<span class="sep">/</span>{%- endunless -%}
+      {%- if item.url != blank and forloop.last == false -%}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      {%- else -%}
+        <span class="current">{{ item.title }}</span>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+{%- endif -%}

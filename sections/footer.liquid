@@ -1,0 +1,98 @@
+<footer id="contact" class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <h2>{{ section.settings.headline | default: settings.footer_headline | split: '.' | first }}<span>.</span></h2>
+      <p class="lede">{{ section.settings.lede | default: settings.footer_lede }}</p>
+      <div class="hero-ctas" style="margin-top:28px;">
+        <a href="https://wa.me/{{ settings.whatsapp_number }}" class="btn solid" target="_blank" rel="noopener">
+          {{ 'general.whatsapp_us' | t }} →
+        </a>
+      </div>
+    </div>
+    <div class="fcol">
+      <h5>{{ 'general.workshop' | t }}</h5>
+      <p>{{ settings.workshop_address | newline_to_br }}</p>
+      <p>{{ settings.hours }}</p>
+    </div>
+    <div class="fcol">
+      <h5>{{ 'general.contact' | t }}</h5>
+      <a href="tel:{{ settings.phone | replace: '-', '' }}">{{ settings.phone }}</a>
+      <a href="mailto:{{ settings.email }}">{{ settings.email }}</a>
+      {%- if settings.social_facebook != blank -%}
+        <a href="{{ settings.social_facebook }}" target="_blank" rel="noopener">Facebook — ProCut CNC Laser</a>
+      {%- endif -%}
+      {%- if settings.social_instagram != blank -%}
+        <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">Instagram</a>
+      {%- endif -%}
+    </div>
+    <div class="fcol">
+      <h5>{{ 'general.shop' | t }}</h5>
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>{{ section.settings.copyright | default: settings.footer_copyright }}</span>
+    <span>{{ section.settings.materials_line | default: settings.footer_materials_line }}</span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline override"
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Description override"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright override"
+    },
+    {
+      "type": "text",
+      "id": "materials_line",
+      "label": "Materials line override"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Shop link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Link"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "link", "settings": { "label": "Services", "url": "/pages/services" } },
+        { "type": "link", "settings": { "label": "Catalog", "url": "/collections/all" } },
+        { "type": "link", "settings": { "label": "Materials", "url": "/#materials" } },
+        { "type": "link", "settings": { "label": "Process", "url": "/#process" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

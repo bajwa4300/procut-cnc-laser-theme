@@ -1,0 +1,33 @@
+{%- liquid
+  assign fallback_type = 'default'
+  if product.tags contains 'calligraphy'
+    assign fallback_type = 'calligraphy'
+  elsif product.tags contains 'partition'
+    assign fallback_type = 'partition'
+  elsif product.tags contains 'gate'
+    assign fallback_type = 'gate'
+  elsif product.tags contains 'railing'
+    assign fallback_type = 'railing'
+  elsif product.tags contains 'elevation'
+    assign fallback_type = 'elevation'
+  elsif product.tags contains 'b2b'
+    assign fallback_type = 'b2b'
+  endif
+-%}
+
+{%- case fallback_type -%}
+  {%- when 'calligraphy' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#1a1a1a"/><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M100 20 100 45 M180 100 155 100 M100 180 100 155 M20 100 45 100"/><path d="M100 45c-30 0-40 25-40 55 0 20 15 30 40 30s40-10 40-30c0-30-10-55-40-55z"/></g></svg>
+  {%- when 'partition' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160"/><path d="M20 60h160M20 100h160M20 140h160M60 20v160M100 20v160M140 20v160"/><circle cx="100" cy="100" r="20"/></g></svg>
+  {%- when 'gate' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M20 180V60c0-10 8-20 20-20h120c12 0 20 10 20 20v120"/><path d="M20 180h160"/></g></svg>
+  {%- when 'railing' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M20 180V60c0-10 8-20 20-20h120c12 0 20 10 20 20v120"/><path d="M20 180h160"/></g></svg>
+  {%- when 'elevation' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><rect x="20" y="20" width="160" height="160" rx="2"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="38"/></g></svg>
+  {%- when 'b2b' -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="6" fill="none"><rect x="30" y="30" width="140" height="140"/><circle cx="100" cy="100" r="34"/><circle cx="100" cy="100" r="6"/><path d="M100 30v36M100 134v36M30 100h36M134 100h36"/></g></svg>
+  {%- else -%}
+    <svg viewBox="0 0 200 200" aria-hidden="true"><rect x="30" y="30" width="140" height="140" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
+{%- endcase -%}

@@ -1,0 +1,42 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {},
+      "blocks": {
+        "link-1": {
+          "type": "link",
+          "settings": {
+            "label": "Services",
+            "url": "/pages/services"
+          }
+        },
+        "link-2": {
+          "type": "link",
+          "settings": {
+            "label": "Catalog",
+            "url": "/collections/all"
+          }
+        },
+        "link-3": {
+          "type": "link",
+          "settings": {
+            "label": "Materials",
+            "url": "/#materials"
+          }
+        },
+        "link-4": {
+          "type": "link",
+          "settings": {
+            "label": "Process",
+            "url": "/#process"
+          }
+        }
+      },
+      "block_order": ["link-1", "link-2", "link-3", "link-4"]
+    }
+  },
+  "order": ["footer"]
+}
