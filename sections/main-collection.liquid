@@ -1,77 +1,144 @@
-<nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}">
-  <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a><span class="sep">/</span>
-  <span class="current">{{ section.settings.title | default: collection.title }}</span>
-</nav>
+{%- liquid
+  if collection.products_count < 10
+    assign count_padded = '0' | append: collection.products_count
+  else
+    assign count_padded = collection.products_count
+  endif
+-%}
 
 <div class="shop-head">
   <h1>{{ section.settings.title | default: collection.title }}</h1>
   <p class="count">
-    {{ 'collections.product_count' | t: count: collection.products_count }}
+    {{ count_padded }} {{ section.settings.count_label | default: 'PIECES' }}
     {%- if section.settings.subtitle != blank -%} — {{ section.settings.subtitle }}{%- endif -%}
   </p>
 </div>
 
 <div class="shop-body">
   <aside class="filters">
-    <form id="CollectionFiltersForm">
-      {%- for filter in collection.filters -%}
-        <div class="filter-group">
-          <h5>{{ filter.label }}</h5>
-          {%- case filter.type -%}
-            {%- when 'list' -%}
-              {%- for value in filter.values -%}
-                <label class="filter-opt">
-                  <span>
-                    <input
-                      type="checkbox"
-                      name="{{ value.param_name }}"
-                      value="{{ value.value }}"
-                      {% if value.active %}checked{% endif %}
-                      {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                    >
-                    {{ value.label }}
-                  </span>
-                  <span class="n">{{ value.count }}</span>
-                </label>
-              {%- endfor -%}
-            {%- when 'price_range' -%}
-              <div class="filter-price">
-                <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | money_without_currency }}" placeholder="Min">
-                <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | money_without_currency }}" placeholder="Max">
-              </div>
-          {%- endcase -%}
+    {%- assign has_categories = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'category' -%}{%- assign has_categories = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_categories -%}
+      <div class="filter-group">
+        <h5>{{ section.settings.category_heading | default: 'Category' }}</h5>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'category' -%}
+            {%- assign tag_count = 0 -%}
+            {%- for product in collection.products -%}
+              {%- if product.tags contains block.settings.tag -%}
+                {%- assign tag_count = tag_count | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- assign count_display = tag_count -%}
+            {%- if tag_count < 10 -%}
+              {%- assign count_display = '0' | append: tag_count -%}
+            {%- endif -%}
+            <label class="filter-opt" {{ block.shopify_attributes }}>
+              <span>
+                <input type="checkbox" class="filter-category" data-filter-tag="{{ block.settings.tag }}" checked>
+                {{ block.settings.label }}
+              </span>
+              <span class="n">{{ count_display }}</span>
+            </label>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign has_materials = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'material' -%}{%- assign has_materials = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_materials -%}
+      <div class="filter-group">
+        <h5>{{ section.settings.material_heading | default: 'Material' }}</h5>
+        <div class="filter-swatches">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'material' -%}
+              <button
+                type="button"
+                class="fswatch active"
+                title="{{ block.settings.label }}"
+                style="background:{{ block.settings.swatch_color }};"
+                data-filter-tag="{{ block.settings.tag }}"
+                {{ block.shopify_attributes }}
+              ></button>
+            {%- endif -%}
+          {%- endfor -%}
         </div>
-      {%- endfor -%}
-      {%- if section.settings.show_filter_cta -%}
-        <a href="/pages/contact" class="btn solid full">{{ section.settings.filter_cta_label }}</a>
-      {%- endif -%}
-    </form>
+      </div>
+    {%- endif -%}
+
+    {%- assign has_order_types = false -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'order_type' -%}{%- assign has_order_types = true -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+
+    {%- if has_order_types -%}
+      <div class="filter-group">
+        <h5>{{ section.settings.order_type_heading | default: 'Order Type' }}</h5>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'order_type' -%}
+            <label class="filter-opt" {{ block.shopify_attributes }}>
+              <span>
+                <input type="checkbox" class="filter-order-type" data-filter-tag="{{ block.settings.tag }}" checked>
+                {{ block.settings.label }}
+              </span>
+            </label>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_filter_cta -%}
+      <a href="{{ section.settings.filter_cta_url | default: '/pages/contact' }}" class="btn ghost full">
+        {{ section.settings.filter_cta_label | default: "CAN'T FIND IT? ASK →" }}
+      </a>
+    {%- endif -%}
   </aside>
 
   <div class="shop-grid-wrap">
-    <div class="toolbar">
-      <span>{{ collection.products_count }} {{ 'collections.items' | t }}</span>
-      <form>
-        <select name="sort_by" id="SortBy" onchange="this.form.submit()">
-          {%- for option in collection.sort_options -%}
-            <option value="{{ option.value }}"{% if option.value == collection.sort_by %} selected{% endif %}>{{ option.name }}</option>
-          {%- endfor -%}
-        </select>
-      </form>
-    </div>
+    {%- paginate collection.products by section.settings.products_per_page -%}
+      {%- assign shown = paginate.current_offset | plus: paginate.page_size | at_most: paginate.items -%}
+      <div class="toolbar">
+        <span>{{ 'collections.showing' | t: shown: shown, total: collection.products_count }}</span>
+        <form class="toolbar-sort" action="{{ collection.url }}" method="get">
+          <select name="sort_by" id="SortBy" aria-label="{{ 'collections.sort' | t }}">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}"{% if option.value == collection.sort_by %} selected{% endif %}>
+                {%- case option.value -%}
+                  {%- when 'manual' -%}SORT — FEATURED
+                  {%- when 'best-selling' -%}SORT — BEST SELLING
+                  {%- when 'title-ascending' -%}SORT — A-Z
+                  {%- when 'title-descending' -%}SORT — Z-A
+                  {%- when 'price-ascending' -%}PRICE: LOW TO HIGH
+                  {%- when 'price-descending' -%}PRICE: HIGH TO LOW
+                  {%- when 'created-ascending' -%}OLDEST
+                  {%- when 'created-descending' -%}NEWEST
+                  {%- else -%}{{ option.name | upcase }}
+                {%- endcase -%}
+              </option>
+            {%- endfor -%}
+          </select>
+        </form>
+      </div>
 
-    <div class="product-grid" id="ProductGrid">
-      {%- paginate collection.products by section.settings.products_per_page -%}
+      <div class="product-grid" id="ProductGrid">
         {%- for product in collection.products -%}
           {% render 'product-card', product: product, show_add_button: true, show_description: true %}
         {%- else -%}
           <p class="collection-empty">{{ 'collections.empty' | t }}</p>
         {%- endfor -%}
-        {%- if paginate.pages > 1 -%}
-          <div class="pagination">{{ paginate | default_pagination }}</div>
-        {%- endif -%}
-      {%- endpaginate -%}
-    </div>
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div class="pagination">{{ paginate | default_pagination }}</div>
+      {%- endif -%}
+    {%- endpaginate -%}
   </div>
 </div>
 
@@ -82,10 +149,61 @@
   "class": "section-main-collection",
   "settings": [
     { "type": "text", "id": "title", "label": "Title override", "default": "The Catalog." },
+    { "type": "text", "id": "count_label", "label": "Count label", "default": "PIECES" },
     { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "READY TO ORDER OR RE-QUOTE TO YOUR SIZE" },
+    { "type": "text", "id": "category_heading", "label": "Category heading", "default": "Category" },
+    { "type": "text", "id": "material_heading", "label": "Material heading", "default": "Material" },
+    { "type": "text", "id": "order_type_heading", "label": "Order type heading", "default": "Order Type" },
     { "type": "range", "id": "products_per_page", "min": 6, "max": 24, "step": 3, "label": "Products per page", "default": 12 },
     { "type": "checkbox", "id": "show_filter_cta", "label": "Show filter CTA button", "default": true },
-    { "type": "text", "id": "filter_cta_label", "label": "Filter CTA label", "default": "REQUEST CUSTOM CUT →" }
+    { "type": "text", "id": "filter_cta_label", "label": "Filter CTA label", "default": "CAN'T FIND IT? ASK →" },
+    { "type": "url", "id": "filter_cta_url", "label": "Filter CTA URL" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category filter",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Category" },
+        { "type": "text", "id": "tag", "label": "Product tag (for filtering)", "default": "calligraphy" }
+      ]
+    },
+    {
+      "type": "material",
+      "name": "Material swatch",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Mild Steel" },
+        { "type": "text", "id": "swatch_color", "label": "Swatch CSS background", "default": "linear-gradient(135deg, #8a8d92, #5a5d61)" },
+        { "type": "text", "id": "tag", "label": "Product tag (optional)", "default": "ms" }
+      ]
+    },
+    {
+      "type": "order_type",
+      "name": "Order type filter",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Fixed Price" },
+        { "type": "text", "id": "tag", "label": "Product tag", "default": "fixed-price" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Wall Art / Calligraphy", "tag": "calligraphy" } },
+        { "type": "category", "settings": { "label": "Partition Panels", "tag": "partition" } },
+        { "type": "category", "settings": { "label": "Gates & Doors", "tag": "gate" } },
+        { "type": "category", "settings": { "label": "Railings", "tag": "railing" } },
+        { "type": "category", "settings": { "label": "Elevation Screens", "tag": "elevation" } },
+        { "type": "category", "settings": { "label": "Bulk / B2B Cutting", "tag": "b2b" } },
+        { "type": "material", "settings": { "label": "Mild Steel", "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)", "tag": "ms" } },
+        { "type": "material", "settings": { "label": "Stainless Steel", "swatch_color": "linear-gradient(135deg, #d7d7d4, #a8a8a4)", "tag": "ss" } },
+        { "type": "material", "settings": { "label": "Golden SS", "swatch_color": "linear-gradient(135deg, #c9a668, #8a6f3f)", "tag": "golden-ss" } },
+        { "type": "material", "settings": { "label": "Aluminium", "swatch_color": "linear-gradient(135deg, #e6e6e3, #bcbcb8)", "tag": "aluminium" } },
+        { "type": "order_type", "settings": { "label": "Fixed Price", "tag": "fixed-price" } },
+        { "type": "order_type", "settings": { "label": "Quote-Based", "tag": "made-to-order" } }
+      ]
+    }
   ]
 }
 {% endschema %}

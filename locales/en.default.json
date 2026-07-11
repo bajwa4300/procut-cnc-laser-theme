@@ -16,6 +16,9 @@
   "products": {
     "product": {
       "add_to_cart": "ADD TO CART",
+      "add_short": "Add to Cart",
+      "get_quote": "Get Quote",
+      "upload_file": "Upload File",
       "sold_out": "SOLD OUT",
       "in_stock": "IN STOCK — SHIPS IN 3–5 DAYS",
       "media": "Product image",
@@ -36,6 +39,8 @@
   },
   "collections": {
     "product_count": "{{ count }} PIECES",
+    "showing": "SHOWING {{ shown }} OF {{ total }}",
+    "sort": "Sort products",
     "items": "ITEMS",
     "empty": "No products in this collection yet."
   },
