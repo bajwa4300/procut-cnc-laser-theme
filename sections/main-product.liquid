@@ -1,0 +1,201 @@
+<nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}">
+  <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a><span class="sep">/</span>
+  <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a><span class="sep">/</span>
+  <span class="current">{{ product.title }}</span>
+</nav>
+
+<product-info id="MainProduct-{{ section.id }}" class="pdp" data-section="{{ section.id }}">
+  <div class="pdp-gallery">
+    <div class="pdp-main" id="ProductMainImage">
+      {%- if product.tags contains 'bestseller' -%}
+        <span class="product-tag laser">{{ 'products.badge.bestseller' | t }}</span>
+      {%- elsif product.tags contains 'made-to-order' -%}
+        <span class="product-tag">{{ 'products.badge.made_to_order' | t }}</span>
+      {%- endif -%}
+
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 1200 | image_tag: id: 'ProductMainImg', alt: product.title }}
+      {%- else -%}
+        {% render 'product-fallback-svg', product: product %}
+      {%- endif -%}
+    </div>
+
+    {%- if product.media.size > 1 -%}
+      <div class="pdp-thumbs">
+        {%- for media in product.media limit: 4 -%}
+          <button
+            type="button"
+            class="pdp-thumb{% if forloop.first %} active{% endif %}"
+            data-media-id="{{ media.id }}"
+            data-src="{{ media | image_url: width: 1200 }}"
+            aria-label="{{ 'products.product.media' | t }}"
+          >
+            {{ media | image_url: width: 200 | image_tag: loading: 'lazy', alt: media.alt }}
+          </button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="pdp-info">
+    {%- if product.type != blank -%}
+      <div class="pdp-eyebrow"><span>●</span> {{ product.type | upcase }}</div>
+    {%- endif -%}
+
+    <h1>{{ product.title }}</h1>
+
+    <div class="pdp-code">
+      {%- assign sku = product.selected_or_first_available_variant.sku -%}
+      {%- if sku != blank -%}SKU {{ sku }}{%- endif -%}
+      {%- if product.metafields.custom.cut_file != blank -%} &nbsp;·&nbsp; {{ product.metafields.custom.cut_file }}{%- endif -%}
+    </div>
+
+    <div class="pdp-price" id="ProductPrice-{{ section.id }}">
+      {% render 'price', product: product, use_variant: true, unit_text: product.metafields.custom.unit_text %}
+    </div>
+
+    <div class="pdp-stock" id="ProductStock-{{ section.id }}">
+      <span class="dot"></span>
+      <span data-stock-text>
+        {%- if product.selected_or_first_available_variant.available -%}
+          {{ 'products.product.in_stock' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </span>
+    </div>
+
+    {%- if product.description != blank -%}
+      <p class="pdp-desc">{{ product.description }}</p>
+    {%- endif -%}
+
+    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+    {% form 'product', product, id: product_form_id, class: 'product-form', data-product-id: product.id %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-input>
+
+      {%- unless product.has_only_default_variant -%}
+        {%- for option in product.options_with_values -%}
+          <div class="opt-group">
+            <h5>
+              {{ option.name }}
+              <span data-option-label="{{ option.name | handleize }}">— {{ option.selected_value }}</span>
+            </h5>
+            <div class="opt-row" data-option-index="{{ forloop.index0 }}">
+              {%- for value in option.values -%}
+                {%- if option.name == 'Finish' or option.name == 'finish' -%}
+                  {%- assign swatch_color = '#1a1a1a' -%}
+                  {%- if value == 'Raw Steel' -%}{%- assign swatch_color = 'linear-gradient(135deg,#9a9d9f,#6a6d6f)' -%}{%- endif -%}
+                  {%- if value == 'Golden PVD' -%}{%- assign swatch_color = 'linear-gradient(135deg,#c9a668,#8a6f3f)' -%}{%- endif -%}
+                  <button
+                    type="button"
+                    class="opt-swatch{% if option.selected_value == value %} active{% endif %}"
+                    title="{{ value }}"
+                    style="background:{{ swatch_color }};"
+                    data-option-value="{{ value | escape }}"
+                    data-option-name="{{ option.name | escape }}"
+                  ></button>
+                {%- else -%}
+                  <button
+                    type="button"
+                    class="opt-pill{% if option.selected_value == value %} active{% endif %}"
+                    data-option-value="{{ value | escape }}"
+                    data-option-name="{{ option.name | escape }}"
+                  >{{ value }}</button>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            <select class="visually-hidden" name="options[{{ option.name | escape }}]" data-option-select="{{ forloop.index0 }}">
+              {%- for value in option.values -%}
+                <option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endfor -%}
+      {%- endunless -%}
+
+      <div class="qty-row">
+        <div class="qty-box">
+          <button type="button" data-qty-minus aria-label="{{ 'products.product.quantity.decrease' | t }}">−</button>
+          <input type="number" name="quantity" value="1" min="1" class="qty-input" aria-label="{{ 'products.product.quantity.label' | t }}">
+          <button type="button" data-qty-plus aria-label="{{ 'products.product.quantity.increase' | t }}">+</button>
+        </div>
+      </div>
+
+      <div class="pdp-ctas">
+        <button type="submit" name="add" class="btn solid full" id="AddToCart-{{ section.id }}"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>
+          <span data-add-text>{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+      </div>
+    {% endform %}
+
+    <div class="spec-sheet">
+      {%- assign spec_rows = product.metafields.custom.spec_sheet.value -%}
+      {%- if spec_rows != blank -%}
+        {%- for row in spec_rows -%}
+          <div class="spec-row">
+            <span class="k">{{ row.key }}</span>
+            <span class="v">{{ row.value }}</span>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'spec' -%}
+            <div class="spec-row" {{ block.shopify_attributes }}>
+              <span class="k">{{ block.settings.key }}</span>
+              <span class="v">{{ block.settings.value }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <div class="trust-strip">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust' -%}
+          <span {{ block.shopify_attributes }}><span class="dot">◆</span> {{ block.settings.text }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <script type="application/json" id="ProductJSON-{{ section.id }}">{{ product | json }}</script>
+</product-info>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "section-main-product",
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec row (fallback)",
+      "settings": [
+        { "type": "text", "id": "key", "label": "Label", "default": "Material" },
+        { "type": "text", "id": "value", "label": "Value", "default": "2MM Mild Steel" }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Trust item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "CUT TO ORDER" }
+      ]
+    }
+  ],
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product",
+      "blocks": [
+        { "type": "spec", "settings": { "key": "Material", "value": "2MM Mild Steel" } },
+        { "type": "spec", "settings": { "key": "Cut Tolerance", "value": "± 0.10MM" } },
+        { "type": "spec", "settings": { "key": "Lead Time", "value": "3–5 Working Days" } },
+        { "type": "trust", "settings": { "text": "CUT TO ORDER" } },
+        { "type": "trust", "settings": { "text": "RAWALPINDI PICKUP AVAILABLE" } },
+        { "type": "trust", "settings": { "text": "WHATSAPP SUPPORT" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

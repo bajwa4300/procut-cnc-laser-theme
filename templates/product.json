@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "spec-1": { "type": "spec", "settings": { "key": "Material", "value": "2MM Mild Steel" } },
+        "spec-2": { "type": "spec", "settings": { "key": "Diameter", "value": "24 IN (609MM)" } },
+        "spec-3": { "type": "spec", "settings": { "key": "Cut Tolerance", "value": "± 0.10MM" } },
+        "spec-4": { "type": "spec", "settings": { "key": "Movement", "value": "Silent Sweep Quartz" } },
+        "spec-5": { "type": "spec", "settings": { "key": "Mounting", "value": "Rear Keyhole Bracket" } },
+        "spec-6": { "type": "spec", "settings": { "key": "Lead Time", "value": "3–5 Working Days" } },
+        "trust-1": { "type": "trust", "settings": { "text": "CUT TO ORDER" } },
+        "trust-2": { "type": "trust", "settings": { "text": "RAWALPINDI PICKUP AVAILABLE" } },
+        "trust-3": { "type": "trust", "settings": { "text": "WHATSAPP SUPPORT" } }
+      },
+      "block_order": ["spec-1", "spec-2", "spec-3", "spec-4", "spec-5", "spec-6", "trust-1", "trust-2", "trust-3"]
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "text": "CUT ON ORDER" } },
+        "item-2": { "type": "item", "settings": { "text": "±0.10MM TOLERANCE" } },
+        "item-3": { "type": "item", "settings": { "text": "SINGLE CONTINUOUS LINE" } },
+        "item-4": { "type": "item", "settings": { "text": "RAWALPINDI WORKSHOP" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+    },
+    "related": {
+      "type": "featured-collection",
+      "settings": {
+        "tag": "Pairs Well With",
+        "title": "You Might Also Cut.",
+        "products_to_show": 3,
+        "show_add_button": true
+      }
+    }
+  },
+  "order": ["main", "marquee", "related"]
+}
