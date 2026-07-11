@@ -152,7 +152,7 @@
         "anchor": "materials",
         "tag": "Raw Stock",
         "title": "Cut From.",
-        "description": "Every material carries its own cut settings — beam power, speed, and gas assist tuned per sheet."
+        "description": "Every material carries its own cut settings beam power, speed, and gas assist tuned per sheet."
       }
     },
     "process": {
