@@ -136,9 +136,9 @@
         "material_LUcDrk": {
           "type": "material",
           "settings": {
-            "name": "Stainless Steel",
+            "name": "Aluminium",
             "swatch_color": "linear-gradient(135deg,#e6e6e3,#bcbcb8)",
-            "spec": "1MM – 6MM SHEET"
+            "spec": "1MM – 4MM SHEET"
           }
         }
       },
