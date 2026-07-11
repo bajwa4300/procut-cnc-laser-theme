@@ -99,6 +99,21 @@
     },
     "services": {
       "type": "services-grid",
+      "blocks": {
+        "service_bFhnbB": {
+          "type": "service",
+          "settings": {
+            "number": "01",
+            "title": "CNC Laser Cutting",
+            "description": "Precision sheet cutting for mechanical parts, brackets and custom components.",
+            "materials": "MS · STEEL · GOLDEN SS · ALUMINIUM",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "service_bFhnbB"
+      ],
       "settings": {
         "anchor": "services",
         "tag": "Capabilities",
