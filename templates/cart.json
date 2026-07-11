@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "benefit-1": { "type": "benefit", "settings": { "text": "Cut to order in Rawalpindi" } },
+        "benefit-2": { "type": "benefit", "settings": { "text": "WhatsApp support before checkout" } },
+        "benefit-3": { "type": "benefit", "settings": { "text": "Pickup available at workshop" } }
+      },
+      "block_order": ["benefit-1", "benefit-2", "benefit-3"]
+    }
+  },
+  "order": ["main"]
+}

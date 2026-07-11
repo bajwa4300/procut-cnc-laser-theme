@@ -1,0 +1,126 @@
+<div class="cart-head">
+  <h1>{{ 'sections.cart.title' | t }}</h1>
+  <p class="count">{{ 'sections.cart.item_count' | t: count: cart.item_count }}</p>
+</div>
+
+<cart-items class="cart-body" data-section-id="{{ section.id }}">
+  <div class="cart-items-wrap">
+    <div class="cart-items" id="main-cart-items">
+      {%- if cart.item_count > 0 -%}
+        <div class="cart-table-head">
+          <span></span>
+          <span>{{ 'sections.cart.headings.product' | t }}</span>
+          <span>{{ 'sections.cart.headings.price' | t }}</span>
+          <span>{{ 'sections.cart.headings.quantity' | t }}</span>
+          <span>{{ 'sections.cart.headings.total' | t }}</span>
+          <span></span>
+        </div>
+
+        <form action="{{ routes.cart_url }}" method="post" id="cart-form">
+          {%- for item in cart.items -%}
+            <div class="cart-row" id="CartItem-{{ item.index | plus: 1 }}">
+              <div class="cart-thumb">
+                {%- if item.image -%}
+                  {{ item.image | image_url: width: 180 | image_tag: alt: item.title }}
+                {%- else -%}
+                  {% render 'product-fallback-svg', product: item.product %}
+                {%- endif -%}
+              </div>
+              <div>
+                <div class="cart-item-name"><a href="{{ item.url }}">{{ item.product.title }}</a></div>
+                <div class="cart-item-meta">
+                  {%- unless item.product.has_only_default_variant -%}
+                    {{ item.variant.title }}
+                  {%- endunless -%}
+                  {%- if item.variant.sku != blank -%} · {{ item.variant.sku }}{%- endif -%}
+                </div>
+              </div>
+              <div class="cart-price">{{ item.original_price | money }}</div>
+              <div class="cart-qty">
+                <button type="button" data-quantity-minus data-index="{{ item.index | plus: 1 }}" data-key="{{ item.key }}" aria-label="{{ 'products.product.quantity.decrease' | t }}">−</button>
+                <input
+                  type="number"
+                  name="updates[]"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  data-quantity-input
+                  data-index="{{ item.index | plus: 1 }}"
+                  data-key="{{ item.key }}"
+                  aria-label="{{ 'products.product.quantity.label' | t }}"
+                >
+                <button type="button" data-quantity-plus data-index="{{ item.index | plus: 1 }}" data-key="{{ item.key }}" aria-label="{{ 'products.product.quantity.increase' | t }}">+</button>
+              </div>
+              <div class="cart-price">{{ item.final_line_price | money }}</div>
+              <button type="button" class="cart-remove" data-remove-item data-key="{{ item.key }}" data-index="{{ item.index | plus: 1 }}" aria-label="{{ 'sections.cart.remove' | t }}">×</button>
+            </div>
+          {%- endfor -%}
+        </form>
+      {%- else -%}
+        <p class="cart-empty-note">{{ 'sections.cart.empty' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn solid">{{ 'general.continue_shopping' | t }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="cart-summary" id="main-cart-footer">
+      <h4>{{ 'sections.cart.summary' | t }}</h4>
+      <div class="sum-row">
+        <span>{{ 'sections.cart.subtotal' | t }}</span>
+        <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+      </div>
+      <div class="sum-row">
+        <span>{{ 'sections.cart.delivery' | t }}</span>
+        <span>{{ settings.delivery_estimate }}</span>
+      </div>
+      <div class="sum-row total">
+        <span>{{ 'sections.cart.total' | t }}</span>
+        <span data-cart-total>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="sum-note">{{ settings.delivery_note }}</p>
+
+      <div class="promo">
+        <input type="text" placeholder="{{ 'sections.cart.promo_placeholder' | t }}" aria-label="{{ 'sections.cart.promo_placeholder' | t }}">
+        <button type="button" disabled>{{ 'sections.cart.promo_apply' | t }}</button>
+      </div>
+      <p class="sum-note">{{ settings.promo_note }}</p>
+
+      {%- if cart.item_count > 0 -%}
+        <form action="{{ routes.cart_url }}" method="post">
+          <button type="submit" name="checkout" class="btn solid full">{{ 'sections.cart.checkout' | t }} →</button>
+        </form>
+      {%- endif -%}
+
+      <div class="cart-benefits">
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}><span class="dot">◆</span> {{ block.settings.text }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</cart-items>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "class": "section-main-cart",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Cut to order in Rawalpindi" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cart",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Cut to order in Rawalpindi" } },
+        { "type": "benefit", "settings": { "text": "WhatsApp support before checkout" } },
+        { "type": "benefit", "settings": { "text": "Pickup available at workshop" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
