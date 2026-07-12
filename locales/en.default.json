@@ -99,7 +99,8 @@
         "call": "Call",
         "address": "Workshop Address",
         "hours": "Working Hours",
-        "directions": "GET DIRECTIONS"
+        "directions": "GET DIRECTIONS",
+        "map_title": "ProCut CNC Laser workshop location map"
       }
     }
   },

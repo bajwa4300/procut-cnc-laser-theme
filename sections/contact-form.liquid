@@ -103,17 +103,20 @@
     <div class="info-block">
       <h5>{{ 'templates.contact.info.address' | t }}</h5>
       <div class="map-box">
-        {%- if section.settings.map_image != blank -%}
-          {{ section.settings.map_image | image_url: width: 800 | image_tag: alt: settings.workshop_address }}
-        {%- else -%}
-          <svg viewBox="0 0 400 250" aria-hidden="true"><g stroke="#c7c7c2" stroke-width="1"><path d="M0 40h400M0 90h400M0 140h400M0 190h400M60 0v250M140 0v250M220 0v250M300 0v250"/></g><path d="M0 60 L400 60" stroke="#8d9094" stroke-width="2"/><path d="M180 0 L200 250" stroke="#8d9094" stroke-width="2"/><circle cx="200" cy="120" r="8" fill="#ff2b1f"/><path d="M200 120 v-30" stroke="#ff2b1f" stroke-width="2"/><circle cx="200" cy="90" r="3" fill="#ff2b1f"/><text x="210" y="115" font-family="JetBrains Mono" font-size="10" fill="#1a1a1a">PROCUT WORKSHOP</text></svg>
-        {%- endif -%}
+        <iframe
+          class="map-embed"
+          title="{{ 'templates.contact.info.map_title' | t }}"
+          src="https://maps.google.com/maps?q={{ section.settings.map_latitude | default: '33.611001' }},{{ section.settings.map_longitude | default: '73.050037' }}&amp;hl=en&amp;z={{ section.settings.map_zoom | default: 15 }}&amp;output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
       </div>
       <div class="map-cta">
         <span>{{ settings.workshop_address | newline_to_br | strip_html }}</span>
-        {%- if section.settings.map_directions_url != blank -%}
-          <a href="{{ section.settings.map_directions_url }}" target="_blank" rel="noopener">{{ 'templates.contact.info.directions' | t }} →</a>
-        {%- endif -%}
+        <a href="{{ section.settings.map_directions_url | default: 'https://maps.app.goo.gl/iypC8KXL7ydVvyB49' }}" target="_blank" rel="noopener noreferrer">
+          {{ 'templates.contact.info.directions' | t }} →
+        </a>
       </div>
     </div>
 
@@ -154,8 +157,10 @@
     { "type": "text", "id": "form_title", "label": "Form title", "default": "Request a Quote" },
     { "type": "textarea", "id": "form_subtitle", "label": "Form subtitle", "default": "Tell us what you need cut. Attach a photo or sketch if you have one — WhatsApp works too if that's easier." },
     { "type": "text", "id": "form_note", "label": "Form note", "default": "We reply by WhatsApp or call within one working day." },
-    { "type": "image_picker", "id": "map_image", "label": "Map image" },
-    { "type": "url", "id": "map_directions_url", "label": "Directions URL" }
+    { "type": "text", "id": "map_latitude", "label": "Map latitude", "default": "33.611001" },
+    { "type": "text", "id": "map_longitude", "label": "Map longitude", "default": "73.050037" },
+    { "type": "range", "id": "map_zoom", "min": 10, "max": 20, "step": 1, "label": "Map zoom level", "default": 15 },
+    { "type": "url", "id": "map_directions_url", "label": "Directions URL", "default": "https://maps.app.goo.gl/iypC8KXL7ydVvyB49" }
   ],
   "blocks": [
     { "type": "service_type", "name": "Service type pill", "settings": [

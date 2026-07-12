@@ -22,7 +22,13 @@
         "cta-2": { "type": "cta_tile", "settings": { "tag": "Ready-Made", "title": "Browse The Shop", "description": "Calligraphy pieces, panels and railing already have fixed prices — order directly.", "url": "/collections/all" } },
         "cta-3": { "type": "cta_tile", "settings": { "tag": "Custom", "title": "See All Services", "description": "Not sure which process fits your job? Compare all six disciplines first.", "url": "/pages/services" } }
       },
-      "block_order": ["svc-1","svc-2","svc-3","svc-4","svc-5","svc-6","svc-7","mat-1","mat-2","mat-3","mat-4","mat-5","hrs-1","hrs-2","hrs-3","cta-1","cta-2","cta-3"]
+      "block_order": ["svc-1","svc-2","svc-3","svc-4","svc-5","svc-6","svc-7","mat-1","mat-2","mat-3","mat-4","mat-5","hrs-1","hrs-2","hrs-3","cta-1","cta-2","cta-3"],
+      "settings": {
+        "map_latitude": "33.611001",
+        "map_longitude": "73.050037",
+        "map_zoom": 15,
+        "map_directions_url": "https://maps.app.goo.gl/iypC8KXL7ydVvyB49"
+      }
     }
   },
   "order": ["main"]
