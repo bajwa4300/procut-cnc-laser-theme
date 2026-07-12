@@ -228,10 +228,34 @@
             "number": "±0.1",
             "label": "MM Cut Tolerance"
           }
+        },
+        "stat_keUGhK": {
+          "type": "stat",
+          "settings": {
+            "number": "4",
+            "label": "Materials Mastered"
+          }
+        },
+        "stat_rUifLF": {
+          "type": "stat",
+          "settings": {
+            "number": "1500W",
+            "label": "Fiber Laser Power"
+          }
+        },
+        "stat_wXt6qc": {
+          "type": "stat",
+          "settings": {
+            "number": "24H",
+            "label": "Typical Quote Turnaround"
+          }
         }
       },
       "block_order": [
-        "stat_z67a7G"
+        "stat_z67a7G",
+        "stat_keUGhK",
+        "stat_rUifLF",
+        "stat_wXt6qc"
       ],
       "settings": {}
     }
