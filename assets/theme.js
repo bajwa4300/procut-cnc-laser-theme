@@ -46,6 +46,60 @@
     });
   }
 
+  function initContactMap() {
+    const box = document.querySelector('.map-box');
+    const iframe = box?.querySelector('.map-embed');
+    if (!iframe) return;
+
+    const logMap = (message, data, hypothesisId) => {
+      // #region agent log
+      fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
+        body: JSON.stringify({
+          sessionId: '7a0570',
+          runId: 'pre-fix',
+          hypothesisId,
+          location: 'theme.js:initContactMap',
+          message,
+          data,
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+      if (box) {
+        box.dataset.debugMap = JSON.stringify({ message, ...data });
+      }
+    };
+
+    const dims = () => ({
+      src: iframe.getAttribute('src') || '',
+      boxW: box?.offsetWidth || 0,
+      boxH: box?.offsetHeight || 0,
+      iframeW: iframe.offsetWidth,
+      iframeH: iframe.offsetHeight,
+      inViewport: !!box?.getBoundingClientRect().top && box.getBoundingClientRect().top < window.innerHeight,
+    });
+
+    logMap('map init', dims(), 'H2');
+
+    iframe.addEventListener('load', () => {
+      logMap('map iframe load', dims(), 'H1');
+    });
+
+    iframe.addEventListener('error', () => {
+      logMap('map iframe error', dims(), 'H1');
+    });
+
+    if ('loading' in iframe && iframe.loading === 'lazy') {
+      logMap('map lazy loading enabled', dims(), 'H5');
+    }
+
+    requestAnimationFrame(() => {
+      logMap('map layout after paint', dims(), 'H2');
+    });
+  }
+
   function initProductPage() {
     const productInfo = document.querySelector('product-info');
     if (!productInfo) return;
@@ -259,6 +313,7 @@
     initMobileNav();
     initMarquee();
     initContactPills();
+    initContactMap();
     initProductPage();
     initProductCards();
     initCart();

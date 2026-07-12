@@ -102,19 +102,34 @@
 
     <div class="info-block">
       <h5>{{ 'templates.contact.info.address' | t }}</h5>
+      {%- liquid
+        assign map_zoom = section.settings.map_zoom | default: 16
+        if section.settings.map_embed_src != blank
+          assign map_src = section.settings.map_embed_src
+        elsif section.settings.map_place_query != blank
+          assign map_query = section.settings.map_place_query | url_encode
+          assign map_src = 'https://www.google.com/maps/embed?q=' | append: map_query | append: '&z=' | append: map_zoom | append: '&hl=en'
+        else
+          assign map_lat = section.settings.map_latitude | default: '33.611001'
+          assign map_lng = section.settings.map_longitude | default: '73.050037'
+          assign map_src = 'https://www.google.com/maps/embed?q=' | append: map_lat | append: ',' | append: map_lng | append: '&z=' | append: map_zoom | append: '&hl=en'
+        endif
+        assign directions_url = section.settings.map_directions_url | default: 'https://maps.app.goo.gl/iypC8KXL7ydVvyB49'
+      -%}
       <div class="map-box">
         <iframe
           class="map-embed"
           title="{{ 'templates.contact.info.map_title' | t }}"
-          src="https://maps.google.com/maps?q={{ section.settings.map_latitude | default: '33.611001' }},{{ section.settings.map_longitude | default: '73.050037' }}&amp;hl=en&amp;z={{ section.settings.map_zoom | default: 15 }}&amp;output=embed"
-          loading="lazy"
+          src="{{ map_src }}"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen
+          allow="fullscreen"
+          data-map-src="{{ map_src }}"
         ></iframe>
       </div>
       <div class="map-cta">
         <span>{{ settings.workshop_address | newline_to_br | strip_html }}</span>
-        <a href="{{ section.settings.map_directions_url | default: 'https://maps.app.goo.gl/iypC8KXL7ydVvyB49' }}" target="_blank" rel="noopener noreferrer">
+        <a href="{{ directions_url }}" target="_blank" rel="noopener noreferrer">
           {{ 'templates.contact.info.directions' | t }} →
         </a>
       </div>
@@ -157,10 +172,12 @@
     { "type": "text", "id": "form_title", "label": "Form title", "default": "Request a Quote" },
     { "type": "textarea", "id": "form_subtitle", "label": "Form subtitle", "default": "Tell us what you need cut. Attach a photo or sketch if you have one — WhatsApp works too if that's easier." },
     { "type": "text", "id": "form_note", "label": "Form note", "default": "We reply by WhatsApp or call within one working day." },
-    { "type": "text", "id": "map_latitude", "label": "Map latitude", "default": "33.611001" },
-    { "type": "text", "id": "map_longitude", "label": "Map longitude", "default": "73.050037" },
-    { "type": "range", "id": "map_zoom", "min": 10, "max": 20, "step": 1, "label": "Map zoom level", "default": 15 },
-    { "type": "url", "id": "map_directions_url", "label": "Directions URL", "default": "https://maps.app.goo.gl/iypC8KXL7ydVvyB49" }
+    { "type": "textarea", "id": "map_embed_src", "label": "Map embed URL (optional override)", "info": "Paste the full src URL from Google Maps Share → Embed a map. Leave blank to auto-generate from place query below." },
+    { "type": "text", "id": "map_place_query", "label": "Map place query", "default": "Shop W/572, Ratta Road, Rawalpindi, Pakistan" },
+    { "type": "text", "id": "map_latitude", "label": "Map latitude (fallback)", "default": "33.611001" },
+    { "type": "text", "id": "map_longitude", "label": "Map longitude (fallback)", "default": "73.050037" },
+    { "type": "range", "id": "map_zoom", "min": 10, "max": 20, "step": 1, "label": "Map zoom level", "default": 16 },
+    { "type": "url", "id": "map_directions_url", "label": "Directions URL" }
   ],
   "blocks": [
     { "type": "service_type", "name": "Service type pill", "settings": [
