@@ -188,11 +188,20 @@
             "title": "Nest & Quote",
             "description": "We vectorize the pattern, nest it on sheet, and confirm size and price."
           }
+        },
+        "step_TaBLH7": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Laser Cut",
+            "description": "Fiber laser cuts to ±0.10mm tolerance on your chosen material."
+          }
         }
       },
       "block_order": [
         "step_UdRtkG",
-        "step_XTb88q"
+        "step_XTb88q",
+        "step_TaBLH7"
       ],
       "settings": {
         "anchor": "process",
