@@ -116,7 +116,16 @@
         "ord-2"
       ],
       "settings": {
-        "filter_cta_label": "CAN'T FIND IT? ASK →"
+        "title": "The Catalog.",
+        "count_label": "PIECES",
+        "subtitle": "READY TO ORDER OR RE-QUOTE TO YOUR SIZE",
+        "category_heading": "Category",
+        "material_heading": "Material",
+        "order_type_heading": "Order Type",
+        "products_per_page": 12,
+        "show_filter_cta": true,
+        "filter_cta_label": "CAN'T FIND IT? ASK →",
+        "filter_cta_url": ""
       }
     },
     "marquee": {
@@ -125,19 +134,22 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "text": "CUT ON ORDER"
+            "text": "CUT ON ORDER",
+            "accent": false
           }
         },
         "item-2": {
           "type": "item",
           "settings": {
-            "text": "±0.10MM TOLERANCE"
+            "text": "±0.10MM TOLERANCE",
+            "accent": false
           }
         },
         "item-3": {
           "type": "item",
           "settings": {
-            "text": "RAWALPINDI WORKSHOP"
+            "text": "RAWALPINDI WORKSHOP",
+            "accent": false
           }
         }
       },
