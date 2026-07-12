@@ -119,11 +119,22 @@
             "materials": "MS SHEET · 2–4MM",
             "link": "shopify://pages/what-we-cut"
           }
+        },
+        "service_6hHpVh": {
+          "type": "service",
+          "settings": {
+            "number": "03",
+            "title": "Railing & Stairs",
+            "description": "Structural and decorative railing panels for staircases, balconies and balustrades.",
+            "materials": "MS · SS",
+            "link": "shopify://pages/what-we-cut"
+          }
         }
       },
       "block_order": [
         "service_bFhnbB",
-        "service_FtwBLz"
+        "service_FtwBLz",
+        "service_6hHpVh"
       ],
       "settings": {
         "anchor": "services",
