@@ -1,22 +1,120 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-collection",
       "blocks": {
-        "cat-1": { "type": "category", "settings": { "label": "Wall Art / Calligraphy", "tag": "calligraphy" } },
-        "cat-2": { "type": "category", "settings": { "label": "Partition Panels", "tag": "partition" } },
-        "cat-3": { "type": "category", "settings": { "label": "Gates & Doors", "tag": "gate" } },
-        "cat-4": { "type": "category", "settings": { "label": "Railings", "tag": "railing" } },
-        "cat-5": { "type": "category", "settings": { "label": "Elevation Screens", "tag": "elevation" } },
-        "cat-6": { "type": "category", "settings": { "label": "Bulk / B2B Cutting", "tag": "b2b" } },
-        "mat-1": { "type": "material", "settings": { "label": "Mild Steel", "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)", "tag": "ms" } },
-        "mat-2": { "type": "material", "settings": { "label": "Stainless Steel", "swatch_color": "linear-gradient(135deg, #d7d7d4, #a8a8a4)", "tag": "ss" } },
-        "mat-3": { "type": "material", "settings": { "label": "Golden SS", "swatch_color": "linear-gradient(135deg, #c9a668, #8a6f3f)", "tag": "golden-ss" } },
-        "mat-4": { "type": "material", "settings": { "label": "Aluminium", "swatch_color": "linear-gradient(135deg, #e6e6e3, #bcbcb8)", "tag": "aluminium" } },
-        "ord-1": { "type": "order_type", "settings": { "label": "Fixed Price", "tag": "fixed-price" } },
-        "ord-2": { "type": "order_type", "settings": { "label": "Quote-Based", "tag": "made-to-order" } }
+        "cat-1": {
+          "type": "category",
+          "settings": {
+            "label": "Wall Art / Calligraphy",
+            "tag": "calligraphy"
+          }
+        },
+        "cat-2": {
+          "type": "category",
+          "settings": {
+            "label": "Partition Panels",
+            "tag": "partition"
+          }
+        },
+        "cat-3": {
+          "type": "category",
+          "settings": {
+            "label": "Gates & Doors",
+            "tag": "gate"
+          }
+        },
+        "cat-4": {
+          "type": "category",
+          "settings": {
+            "label": "Railings",
+            "tag": "railing"
+          }
+        },
+        "cat-5": {
+          "type": "category",
+          "settings": {
+            "label": "Elevation Screens",
+            "tag": "elevation"
+          }
+        },
+        "cat-6": {
+          "type": "category",
+          "settings": {
+            "label": "Bulk / B2B Cutting",
+            "tag": "b2b"
+          }
+        },
+        "mat-1": {
+          "type": "material",
+          "settings": {
+            "label": "Mild Steel",
+            "swatch_color": "linear-gradient(135deg, #8a8d92, #5a5d61)",
+            "tag": "ms"
+          }
+        },
+        "mat-2": {
+          "type": "material",
+          "settings": {
+            "label": "Stainless Steel",
+            "swatch_color": "linear-gradient(135deg, #d7d7d4, #a8a8a4)",
+            "tag": "ss"
+          }
+        },
+        "mat-3": {
+          "type": "material",
+          "settings": {
+            "label": "Golden SS",
+            "swatch_color": "linear-gradient(135deg, #c9a668, #8a6f3f)",
+            "tag": "golden-ss"
+          }
+        },
+        "mat-4": {
+          "type": "material",
+          "settings": {
+            "label": "Aluminium",
+            "swatch_color": "linear-gradient(135deg, #e6e6e3, #bcbcb8)",
+            "tag": "aluminium"
+          }
+        },
+        "ord-1": {
+          "type": "order_type",
+          "settings": {
+            "label": "Fixed Price",
+            "tag": "fixed-price"
+          }
+        },
+        "ord-2": {
+          "type": "order_type",
+          "settings": {
+            "label": "Quote-Based",
+            "tag": "made-to-order"
+          }
+        }
       },
-      "block_order": ["cat-1","cat-2","cat-3","cat-4","cat-5","cat-6","mat-1","mat-2","mat-3","mat-4","ord-1","ord-2"],
+      "block_order": [
+        "cat-1",
+        "cat-2",
+        "cat-3",
+        "cat-4",
+        "cat-5",
+        "cat-6",
+        "mat-1",
+        "mat-2",
+        "mat-3",
+        "mat-4",
+        "ord-1",
+        "ord-2"
+      ],
       "settings": {
         "filter_cta_label": "CAN'T FIND IT? ASK →"
       }
@@ -24,12 +122,35 @@
     "marquee": {
       "type": "marquee",
       "blocks": {
-        "item-1": { "type": "item", "settings": { "text": "CUT ON ORDER" } },
-        "item-2": { "type": "item", "settings": { "text": "±0.10MM TOLERANCE" } },
-        "item-3": { "type": "item", "settings": { "text": "RAWALPINDI WORKSHOP" } }
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "text": "CUT ON ORDER"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "text": "±0.10MM TOLERANCE"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "text": "RAWALPINDI WORKSHOP"
+          }
+        }
       },
-      "block_order": ["item-1", "item-2", "item-3"]
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3"
+      ],
+      "settings": {}
     }
   },
-  "order": ["main", "marquee"]
+  "order": [
+    "main",
+    "marquee"
+  ]
 }

@@ -177,8 +177,8 @@
           "type": "step",
           "settings": {
             "number": "01",
-            "title": "Step",
-            "description": ""
+            "title": "Send Design",
+            "description": "Share a photo, sketch or CAD file or pick a pattern from our catalog."
           }
         }
       },
