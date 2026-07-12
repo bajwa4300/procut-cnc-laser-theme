@@ -1,10 +1,14 @@
-<section class="section" id="shopify-section-{{ section.id }}">
-  <div class="section-head wrap">
-    <div>
-      {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
-      <h2>{{ section.settings.title }}</h2>
+<section class="section{% if section.settings.show_heading == false %} svd-faq-only{% endif %}" id="shopify-section-{{ section.id }}">
+  {%- if section.settings.show_heading -%}
+    {%- if section.settings.tag != blank or section.settings.title != blank -%}
+    <div class="section-head wrap">
+      <div>
+        {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
+        {%- if section.settings.title != blank -%}<h2>{{ section.settings.title | newline_to_br }}</h2>{%- endif -%}
+      </div>
     </div>
-  </div>
+    {%- endif -%}
+  {%- endif -%}
   <div class="svd-faq wrap">
     {%- for block in section.blocks -%}
       <div class="faq-item" {{ block.shopify_attributes }}>
@@ -22,7 +26,8 @@
   "class": "section-service-faq",
   "settings": [
     { "type": "text", "id": "tag", "label": "Tag", "default": "Questions" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Before You Order." }
+    { "type": "text", "id": "title", "label": "Title", "default": "Before You Order." },
+    { "type": "checkbox", "id": "show_heading", "label": "Show section heading", "default": true }
   ],
   "blocks": [
     {

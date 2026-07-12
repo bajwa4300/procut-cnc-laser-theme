@@ -9,6 +9,10 @@
  */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {}
+    },
     "main": {
       "type": "main-collection",
       "blocks": {
@@ -162,6 +166,7 @@
     }
   },
   "order": [
+    "breadcrumb",
     "main",
     "marquee"
   ]

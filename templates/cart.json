@@ -1,5 +1,9 @@
 {
   "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {}
+    },
     "main": {
       "type": "main-cart",
       "blocks": {
@@ -10,5 +14,5 @@
       "block_order": ["benefit-1", "benefit-2", "benefit-3"]
     }
   },
-  "order": ["main"]
+  "order": ["breadcrumb", "main"]
 }

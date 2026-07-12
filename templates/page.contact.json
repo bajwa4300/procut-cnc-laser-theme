@@ -9,6 +9,12 @@
  */
 {
   "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "current_label": "Contact"
+      }
+    },
     "main": {
       "type": "contact-form",
       "blocks": {
@@ -166,16 +172,17 @@
         "cta-3"
       ],
       "settings": {
-        "map_embed_src": "https://www.google.com/maps/embed?q=33.611001,73.050037&z=16&hl=en",
+        "map_embed_src": "https://www.google.com/maps/embed?q=33.611001,73.050037&z=17&hl=en&iwloc=near",
         "map_place_query": "Shop W/572, Ratta Road, Rawalpindi, Pakistan",
         "map_latitude": "33.611001",
         "map_longitude": "73.050037",
-        "map_zoom": 16,
+        "map_zoom": 17,
         "map_directions_url": "https://maps.app.goo.gl/iypC8KXL7ydVvyB49"
       }
     }
   },
   "order": [
+    "breadcrumb",
     "main"
   ]
 }

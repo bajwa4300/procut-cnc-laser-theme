@@ -350,7 +350,7 @@ footer,.site-footer{background:var(--paper2);padding:90px 32px 30px;position:rel
 .svc-cta .hero-ctas{padding:0 32px 60px;}
 
 /* Service detail */
-.svd-hero{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:0 auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.svd-hero{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:40px auto 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
 .svd-media{aspect-ratio:1/1;background:var(--paper2);border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;}
 .svd-media img,.svd-media svg{width:58%;height:58%;object-fit:contain;}
 .svd-copy{padding:60px 60px 60px 56px;display:flex;flex-direction:column;justify-content:center;}
@@ -376,6 +376,7 @@ footer,.site-footer{background:var(--paper2);padding:90px 32px 30px;position:rel
 .sp-step h4{font-family:var(--display);font-size:22px;text-transform:uppercase;margin:16px 0 10px;}
 .sp-step p{font-size:12.5px;color:var(--steel-light);line-height:1.6;}
 .svd-faq{max-width:900px;margin:0 auto;}
+.svd-faq-only{border-bottom:1px solid var(--line);}
 .faq-item{border-bottom:1px solid var(--line);padding:22px 0;}
 .faq-item h5{font-family:var(--mono);font-size:13px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;display:flex;justify-content:space-between;}
 .faq-item p{font-size:13.5px;color:var(--steel);line-height:1.6;max-width:640px;}

@@ -1,8 +1,14 @@
 {
   "sections": {
+    "breadcrumb": {
+      "type": "page-breadcrumb",
+      "settings": {
+        "current_label": "Services"
+      }
+    },
     "main": {
       "type": "services-list"
     }
   },
-  "order": ["main"]
+  "order": ["breadcrumb", "main"]
 }

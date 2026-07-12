@@ -1,15 +1,9 @@
-<nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}">
-  <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a><span class="sep">/</span>
-  <a href="/pages/services">{{ 'general.services' | t }}</a><span class="sep">/</span>
-  <span class="current">{{ section.settings.title }}</span>
-</nav>
-
 <div class="svd-hero">
   <div class="svd-media">
     {%- if section.settings.image != blank -%}
       {{ section.settings.image | image_url: width: 1200 | image_tag: alt: section.settings.title }}
     {%- else -%}
-      <svg viewBox="0 0 200 200" aria-hidden="true"><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><ellipse cx="100" cy="100" rx="70" ry="50"/><path d="M60 100h80"/></g></svg>
+      <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="88" fill="none" stroke="#1a1a1a" stroke-width="2"/><g stroke="#1a1a1a" stroke-width="1.6" fill="none"><path d="M100 45c-30 0-40 25-40 55 0 20 15 30 40 30s40-10 40-30c0-30-10-55-40-55z"/><path d="M60 70c10-15 25-20 40-20M60 130c10 15 25 20 40 20"/></g></svg>
     {%- endif -%}
   </div>
   <div class="svd-copy">
@@ -48,13 +42,13 @@
   "class": "section-service-detail-hero",
   "settings": [
     { "type": "image_picker", "id": "image", "label": "Hero image" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SERVICE 05 — ISLAMIC CALLIGRAPHY" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Steel Calligraphy." },
-    { "type": "textarea", "id": "lede", "label": "Description", "default": "Ayat, names and duas cut as a single continuous line from steel — for homes, clocks, mosque interiors and commercial facades." },
-    { "type": "text", "id": "cta_primary_label", "label": "Primary CTA", "default": "SHOP CALLIGRAPHY →" },
-    { "type": "url", "id": "cta_primary_url", "label": "Primary CTA URL" },
-    { "type": "text", "id": "cta_secondary_label", "label": "Secondary CTA", "default": "GET CUSTOM QUOTE" },
-    { "type": "url", "id": "cta_secondary_url", "label": "Secondary CTA URL", "default": "/pages/contact" }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SERVICE 05 / 06" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Islamic Calligraphy" },
+    { "type": "textarea", "id": "lede", "label": "Description", "default": "Ayat, names and duas cut clean from a single continuous line of steel. Every pattern is vectorized from your reference — a photo of a page, a screenshot, even a rough sketch — then cut fresh per order for walls, clocks, gates and mosque interiors." },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary CTA", "default": "SEND YOUR TEXT →" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary CTA URL", "default": "https://wa.me/923215568112" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary CTA", "default": "SEE READY DESIGNS" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary CTA URL", "default": "#products" }
   ],
   "blocks": [
     {
@@ -70,10 +64,10 @@
     {
       "name": "Service detail hero",
       "blocks": [
-        { "type": "quickspec", "settings": { "key": "From", "value": "PKR 8,500" } },
         { "type": "quickspec", "settings": { "key": "Material", "value": "MS / Golden SS" } },
-        { "type": "quickspec", "settings": { "key": "Lead Time", "value": "3–5 Days" } },
-        { "type": "quickspec", "settings": { "key": "Proof", "value": "Vector Included" } }
+        { "type": "quickspec", "settings": { "key": "Lead Time", "value": "3–7 Days" } },
+        { "type": "quickspec", "settings": { "key": "Tolerance", "value": "± 0.10mm" } },
+        { "type": "quickspec", "settings": { "key": "Starting At", "value": "PKR 8,500" } }
       ]
     }
   ]

@@ -1,0 +1,110 @@
+{%- liquid
+  assign show = section.settings.show_breadcrumb
+  if show == false
+    assign show = false
+  else
+    assign show = true
+  endif
+-%}
+
+{%- if show -%}
+  <nav class="breadcrumb" aria-label="{{ 'general.breadcrumb' | t }}" id="shopify-section-{{ section.id }}">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a>
+
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'crumb' -%}
+          <span class="sep">/</span>
+          {%- if block.settings.url != blank and forloop.last == false -%}
+            <a href="{{ block.settings.url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- else -%}
+            <span class="current" {{ block.shopify_attributes }}>{{ block.settings.label }}</span>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- case template.name -%}
+        {%- when 'product' -%}
+          <span class="sep">/</span>
+          <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a>
+          <span class="sep">/</span>
+          <span class="current">{{ product.title }}</span>
+        {%- when 'collection' -%}
+          <span class="sep">/</span>
+          <a href="{{ routes.all_products_collection_url }}">{{ 'general.shop' | t }}</a>
+          <span class="sep">/</span>
+          <span class="current">{{ collection.title }}</span>
+        {%- when 'cart' -%}
+          <span class="sep">/</span>
+          <span class="current">{{ 'sections.cart.title' | t }}</span>
+        {%- when 'page' -%}
+          {%- if section.settings.parent_label != blank -%}
+            <span class="sep">/</span>
+            <a href="{{ section.settings.parent_url | default: '/pages/services' }}">{{ section.settings.parent_label }}</a>
+          {%- elsif template.suffix == 'service-detail' -%}
+            <span class="sep">/</span>
+            <a href="/pages/services">{{ 'general.services' | t }}</a>
+          {%- endif -%}
+          <span class="sep">/</span>
+          <span class="current">{{ section.settings.current_label | default: page.title }}</span>
+        {%- when 'blog' -%}
+          <span class="sep">/</span>
+          <span class="current">{{ blog.title }}</span>
+        {%- when 'article' -%}
+          <span class="sep">/</span>
+          <a href="{{ blog.url }}">{{ blog.title }}</a>
+          <span class="sep">/</span>
+          <span class="current">{{ article.title }}</span>
+        {%- else -%}
+          {%- if section.settings.current_label != blank -%}
+            <span class="sep">/</span>
+            <span class="current">{{ section.settings.current_label }}</span>
+          {%- endif -%}
+      {%- endcase -%}
+    {%- endif -%}
+  </nav>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Page breadcrumb",
+  "tag": "section",
+  "class": "section-page-breadcrumb",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "parent_label",
+      "label": "Parent label (optional)",
+      "info": "e.g. Services — auto-set on service detail pages if left blank"
+    },
+    {
+      "type": "url",
+      "id": "parent_url",
+      "label": "Parent URL"
+    },
+    {
+      "type": "text",
+      "id": "current_label",
+      "label": "Current page label override",
+      "info": "Leave blank to use the page or product title automatically"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "crumb",
+      "name": "Breadcrumb item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Page" },
+        { "type": "url", "id": "url", "label": "URL (leave blank for current page)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Page breadcrumb" }]
+}
+{% endschema %}

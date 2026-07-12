@@ -1,4 +1,4 @@
-<section class="featured-collection" id="shopify-section-{{ section.id }}">
+<section class="featured-collection" id="{% if section.settings.section_id != blank %}{{ section.settings.section_id }}{% else %}shopify-section-{{ section.id }}{% endif %}">
   {%- if section.settings.tag != blank or section.settings.title != blank -%}
     <div class="section-head wrap">
       <div>
@@ -6,7 +6,7 @@
           <span class="section-tag">{{ section.settings.tag }}</span>
         {%- endif -%}
         {%- if section.settings.title != blank -%}
-          <h2>{{ section.settings.title }}</h2>
+          <h2>{{ section.settings.title | newline_to_br }}</h2>
         {%- endif -%}
       </div>
       {%- if section.settings.description != blank -%}
@@ -45,6 +45,7 @@
   "tag": "section",
   "class": "section-featured-collection",
   "settings": [
+    { "type": "text", "id": "section_id", "label": "Section anchor ID", "info": "For in-page links, e.g. products" },
     { "type": "text", "id": "tag", "label": "Section tag", "default": "Catalog" },
     { "type": "text", "id": "title", "label": "Title", "default": "Ready To Cut." },
     { "type": "textarea", "id": "description", "label": "Description" },

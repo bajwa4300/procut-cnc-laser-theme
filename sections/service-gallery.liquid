@@ -2,7 +2,7 @@
   <div class="section-head wrap">
     <div>
       {%- if section.settings.tag != blank -%}<span class="section-tag">{{ section.settings.tag }}</span>{%- endif -%}
-      <h2>{{ section.settings.title }}</h2>
+      <h2>{{ section.settings.title | newline_to_br }}</h2>
     </div>
     {%- if section.settings.description != blank -%}<p>{{ section.settings.description }}</p>{%- endif -%}
   </div>
