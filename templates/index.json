@@ -129,12 +129,23 @@
             "materials": "MS · SS",
             "link": "shopify://pages/what-we-cut"
           }
+        },
+        "service_edDFhf": {
+          "type": "service",
+          "settings": {
+            "number": "04",
+            "title": "Front Elevation",
+            "description": "Facade cladding and jaali-style screens that turn a wall into a lit-through pattern.",
+            "materials": "ALUMINIUM · GOLDEN SS",
+            "link": "shopify://pages/what-we-cut"
+          }
         }
       },
       "block_order": [
         "service_bFhnbB",
         "service_FtwBLz",
-        "service_6hHpVh"
+        "service_6hHpVh",
+        "service_edDFhf"
       ],
       "settings": {
         "anchor": "services",
