@@ -180,10 +180,19 @@
             "title": "Send Design",
             "description": "Share a photo, sketch or CAD file or pick a pattern from our catalog."
           }
+        },
+        "step_XTb88q": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Nest & Quote",
+            "description": "We vectorize the pattern, nest it on sheet, and confirm size and price."
+          }
         }
       },
       "block_order": [
-        "step_UdRtkG"
+        "step_UdRtkG",
+        "step_XTb88q"
       ],
       "settings": {
         "anchor": "process",
