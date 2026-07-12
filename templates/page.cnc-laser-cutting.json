@@ -12,9 +12,129 @@
     "main": {
       "type": "main-page",
       "settings": {}
+    },
+    "service_gallery_JggfUk": {
+      "type": "service-gallery",
+      "blocks": {
+        "image_T6AhDJ": {
+          "type": "image",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "image_ggdtcH": {
+          "type": "image",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "image_XrBXHY": {
+          "type": "image",
+          "settings": {
+            "caption": ""
+          }
+        },
+        "image_TgUzby": {
+          "type": "image",
+          "settings": {
+            "caption": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_T6AhDJ",
+        "image_ggdtcH",
+        "image_XrBXHY",
+        "image_TgUzby"
+      ],
+      "name": "Service gallery",
+      "settings": {
+        "tag": "Reference Work",
+        "title": "Pattern Library.",
+        "description": "Common calligraphy styles we cut regularly. Send your own verse or name for a custom vector proof."
+      }
+    },
+    "service_process_m64mjq": {
+      "type": "service-process",
+      "blocks": {
+        "step_9N8gAK": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Send Reference",
+            "description": "Share a photo, scan or typed text. We trace it as a single continuous vector line."
+          }
+        },
+        "step_gbJepw": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Approve Proof",
+            "description": "We send a PDF proof showing exact stroke width and size before cutting."
+          }
+        },
+        "step_txAwh3": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Laser Cut & Finish",
+            "description": "Cut on fiber laser, deburred, coated if needed, and ready for wall mount."
+          }
+        }
+      },
+      "block_order": [
+        "step_9N8gAK",
+        "step_gbJepw",
+        "step_txAwh3"
+      ],
+      "name": "Service process",
+      "settings": {
+        "tag": "Text To Steel",
+        "title": "How We Cut It.",
+        "description": "Three steps from your reference to a finished steel piece."
+      }
+    },
+    "service_faq_Nrmg8r": {
+      "type": "service-faq",
+      "blocks": {
+        "faq_cE8bAF": {
+          "type": "faq",
+          "settings": {
+            "question": "Can you cut any ayat or name?",
+            "answer": "Yes — we vectorize any Arabic text, English name or dua as a single continuous line. A proof is sent before cutting."
+          }
+        },
+        "faq_d9RHyy": {
+          "type": "faq",
+          "settings": {
+            "question": "What sizes are available?",
+            "answer": "From 12\" wall pieces to 6ft facade panels. Size is confirmed in the quote and proof stage."
+          }
+        },
+        "faq_xhrrxn": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you install?",
+            "answer": "Wall mounting hardware is included. On-site installation across Rawalpindi/Islamabad can be arranged on request."
+          }
+        }
+      },
+      "block_order": [
+        "faq_cE8bAF",
+        "faq_d9RHyy",
+        "faq_xhrrxn"
+      ],
+      "name": "Service FAQ",
+      "settings": {
+        "tag": "Questions",
+        "title": "Before You Order."
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "service_gallery_JggfUk",
+    "service_process_m64mjq",
+    "service_faq_Nrmg8r"
   ]
 }
