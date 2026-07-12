@@ -196,12 +196,21 @@
             "title": "Laser Cut",
             "description": "Fiber laser cuts to ±0.10mm tolerance on your chosen material."
           }
+        },
+        "step_VKkQf6": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Finish & Deliver",
+            "description": "Deburred, coated if needed, and shipped or installed across Rawalpindi/Islamabad."
+          }
         }
       },
       "block_order": [
         "step_UdRtkG",
         "step_XTb88q",
-        "step_TaBLH7"
+        "step_TaBLH7",
+        "step_VKkQf6"
       ],
       "settings": {
         "anchor": "process",
@@ -212,6 +221,18 @@
     },
     "stats": {
       "type": "stats",
+      "blocks": {
+        "stat_z67a7G": {
+          "type": "stat",
+          "settings": {
+            "number": "±0.1",
+            "label": "MM Cut Tolerance"
+          }
+        }
+      },
+      "block_order": [
+        "stat_z67a7G"
+      ],
       "settings": {}
     }
   },
