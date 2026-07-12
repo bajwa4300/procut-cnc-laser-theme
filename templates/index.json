@@ -109,10 +109,21 @@
             "materials": "MS · STEEL · GOLDEN SS · ALUMINIUM",
             "link": "shopify://pages/what-we-cut"
           }
+        },
+        "service_FtwBLz": {
+          "type": "service",
+          "settings": {
+            "number": "02",
+            "title": "Gates & Doors",
+            "description": "Custom-cut security gates and door panels, from geometric to ornamental patterns.",
+            "materials": "MS SHEET · 2–4MM",
+            "link": "shopify://pages/what-we-cut"
+          }
         }
       },
       "block_order": [
-        "service_bFhnbB"
+        "service_bFhnbB",
+        "service_FtwBLz"
       ],
       "settings": {
         "anchor": "services",
