@@ -16,9 +16,10 @@
           "type": "service",
           "settings": {
             "number": "01",
+            "icon_image": "shopify://shop_images/Screenshot_2026-07-12_052540.png",
             "title": "CNC Laser Cutting",
             "description": "Precision sheet cutting for mechanical parts, brackets and custom components.",
-            "materials": "MS · STEEL · GOLDEN SS · ALUMINIUM",
+            "materials": "MS ,STEEL , GOLDEN SS , ALUMINIUM",
             "price": "From PKR 450",
             "price_unit": "per kg",
             "link": ""
