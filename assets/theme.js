@@ -337,60 +337,6 @@
   }
 
   function initProductCards() {
-    document.querySelectorAll('[data-card-variant]').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const card = btn.closest('[data-product-card]');
-        if (!card) return;
-
-        card.querySelectorAll('[data-card-variant]').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const addBtn = card.querySelector('.product-card-add');
-        const priceEl = card.querySelector('[data-card-price]');
-        const primary = card.querySelector('.product-card-image--primary, [data-card-image]');
-        const secondary = card.querySelector('.product-card-image--secondary');
-
-        if (addBtn) {
-          addBtn.dataset.variantId = btn.dataset.variantId;
-          addBtn.disabled = btn.dataset.available === 'false';
-        }
-        if (priceEl && btn.dataset.price) {
-          const unit = priceEl.querySelector('small');
-          const unitHtml = unit ? unit.outerHTML : '';
-          priceEl.innerHTML = formatMoney(parseInt(btn.dataset.price, 10)) + unitHtml;
-        }
-        if (primary && btn.dataset.image) {
-          primary.removeAttribute('srcset');
-          primary.removeAttribute('sizes');
-          primary.src = btn.dataset.image;
-          if (secondary) secondary.style.opacity = '0';
-          card.classList.add('has-variant-image');
-        }
-
-        // #region agent log
-        fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
-          body: JSON.stringify({
-            sessionId: '7a0570',
-            runId: 'card-variant',
-            hypothesisId: 'H3',
-            location: 'theme.js:initProductCards',
-            message: 'Card variant selected',
-            data: {
-              variantId: btn.dataset.variantId,
-              price: btn.dataset.price,
-              hasImage: !!btn.dataset.image,
-            },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
-      });
-    });
-
     document.querySelectorAll('.product-card-add').forEach((btn) => {
       btn.addEventListener('click', async (e) => {
         e.preventDefault();

@@ -14,7 +14,6 @@
     assign is_b2b = true
   endif
   assign product_tags = card_product.tags | join: ','
-  assign current_variant = card_product.selected_or_first_available_variant
 -%}
 
 <div
@@ -33,7 +32,7 @@
       {%- endif -%}
 
       {%- if card_product.featured_image -%}
-        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image product-card-image--primary', data-card-image: true }}
+        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image product-card-image--primary' }}
         {%- if card_product.images.size > 1 -%}
           {{ card_product.images[1] | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image product-card-image--secondary', aria-hidden: 'true' }}
         {%- endif -%}
@@ -51,43 +50,8 @@
       {%- if card_product.description != blank and show_description -%}
         <p class="desc">{{ card_product.description | strip_html | truncate: 120 }}</p>
       {%- endif -%}
-
-      {%- unless card_product.has_only_default_variant or is_quote or is_b2b -%}
-        {%- for option in card_product.options_with_values -%}
-          {%- unless option.name == 'Finish' or option.name == 'finish' -%}
-            {%- assign opt_n = forloop.index -%}
-            <div class="card-variants opt-row opt-row--inline" data-card-variants>
-              {%- for value in option.values -%}
-                {%- assign matched = blank -%}
-                {%- for v in card_product.variants -%}
-                  {%- if opt_n == 1 and v.option1 == value -%}
-                    {%- assign matched = v -%}
-                  {%- elsif opt_n == 2 and v.option2 == value -%}
-                    {%- assign matched = v -%}
-                  {%- elsif opt_n == 3 and v.option3 == value -%}
-                    {%- assign matched = v -%}
-                  {%- endif -%}
-                {%- endfor -%}
-                {%- if matched != blank -%}
-                  <button
-                    type="button"
-                    class="opt-variant{% if matched.id == current_variant.id %} active{% endif %}"
-                    data-card-variant
-                    data-variant-id="{{ matched.id }}"
-                    data-price="{{ matched.price }}"
-                    data-available="{{ matched.available }}"
-                    {% if matched.featured_image %}data-image="{{ matched.featured_image | image_url: width: 600 }}"{% endif %}
-                    onclick="event.preventDefault();event.stopPropagation();"
-                  >{{ value }}</button>
-                {%- endif -%}
-              {%- endfor -%}
-            </div>
-          {%- endunless -%}
-        {%- endfor -%}
-      {%- endunless -%}
-
       <div class="pi-bottom">
-        {% render 'price', product: card_product, show_from: false, use_variant: true, unit_text: unit_text %}
+        {% render 'price', product: card_product, show_from: true, unit_text: unit_text %}
         {%- if show_add_button -%}
           {%- if is_quote or is_b2b -%}
             <a href="/pages/contact" class="add-btn" onclick="event.stopPropagation()">
@@ -101,9 +65,9 @@
             <button
               type="button"
               class="add-btn product-card-add"
-              data-variant-id="{{ current_variant.id }}"
+              data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
               data-product-id="{{ card_product.id }}"
-              {% unless current_variant.available %}disabled{% endunless %}
+              {% unless card_product.selected_or_first_available_variant.available %}disabled{% endunless %}
               onclick="event.preventDefault();event.stopPropagation()"
             >
               {{ 'products.product.add_short' | t }}
