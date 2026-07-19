@@ -100,6 +100,72 @@
     });
   }
 
+  function initProductGallery() {
+    document.querySelectorAll('product-info').forEach((productInfo) => {
+      const main = productInfo.querySelector('#ProductMainImg, [data-product-main-image]');
+      if (!main) return;
+
+      productInfo.querySelectorAll('.pdp-thumb').forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const url = thumb.getAttribute('data-src') || thumb.dataset.src || '';
+          const thumbImg = thumb.querySelector('img');
+          productInfo.querySelectorAll('.pdp-thumb').forEach((t) => t.classList.remove('active'));
+          thumb.classList.add('active');
+
+          // #region agent log
+          fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
+            body: JSON.stringify({
+              sessionId: '7a0570',
+              runId: 'gallery-click',
+              hypothesisId: 'H1',
+              location: 'theme.js:initProductGallery',
+              message: 'PDP thumb click',
+              data: {
+                hasMain: !!main,
+                url: url.slice(0, 120),
+                hadSrcset: !!main.getAttribute('srcset'),
+                mainTag: main.tagName,
+                beforeSrc: (main.currentSrc || main.src || '').slice(0, 120),
+              },
+              timestamp: Date.now(),
+            }),
+          }).catch(() => {});
+          // #endregion
+
+          if (!url) return;
+
+          // Shopify image_tag sets srcset; browsers ignore src changes while srcset remains.
+          main.removeAttribute('srcset');
+          main.removeAttribute('sizes');
+          main.src = url;
+          if (thumbImg?.alt) main.alt = thumbImg.alt;
+
+          // #region agent log
+          fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
+            body: JSON.stringify({
+              sessionId: '7a0570',
+              runId: 'gallery-click',
+              hypothesisId: 'H1',
+              location: 'theme.js:initProductGallery:after',
+              message: 'PDP main image updated',
+              data: {
+                afterSrc: (main.src || '').slice(0, 120),
+                afterSrcset: main.getAttribute('srcset'),
+                matchesUrl: main.src.includes(url.split('?')[0].split('/').pop() || '___'),
+              },
+              timestamp: Date.now(),
+            }),
+          }).catch(() => {});
+          // #endregion
+        });
+      });
+    });
+  }
+
   function initProductPage() {
     const productInfo = document.querySelector('product-info');
     if (!productInfo) return;
@@ -152,15 +218,6 @@
           if (label) label.textContent = `— ${btn.dataset.optionValue}`;
         }
         updateVariantUI(findVariant());
-      });
-    });
-
-    productInfo.querySelectorAll('.pdp-thumb').forEach((thumb) => {
-      thumb.addEventListener('click', () => {
-        productInfo.querySelectorAll('.pdp-thumb').forEach((t) => t.classList.remove('active'));
-        thumb.classList.add('active');
-        const main = document.getElementById('ProductMainImg');
-        if (main && thumb.dataset.src) main.src = thumb.dataset.src;
       });
     });
 
@@ -358,6 +415,7 @@
     initMarquee();
     initContactPills();
     initContactMap();
+    initProductGallery();
     initProductPage();
     initProductCards();
     initCart();

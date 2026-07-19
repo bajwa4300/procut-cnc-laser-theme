@@ -32,7 +32,10 @@
       {%- endif -%}
 
       {%- if card_product.featured_image -%}
-        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image' }}
+        {{ card_product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image product-card-image--primary' }}
+        {%- if card_product.images.size > 1 -%}
+          {{ card_product.images[1] | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, class: 'product-card-image product-card-image--secondary', aria-hidden: 'true' }}
+        {%- endif -%}
       {%- else -%}
         {% render 'product-fallback-svg', product: card_product %}
       {%- endif -%}

@@ -8,7 +8,7 @@
       {%- endif -%}
 
       {%- if product.featured_media -%}
-        {{ product.featured_media | image_url: width: 1200 | image_tag: id: 'ProductMainImg', alt: product.title }}
+        {{ product.featured_media | image_url: width: 1200 | image_tag: id: 'ProductMainImg', alt: product.title, data-product-main-image: true }}
       {%- else -%}
         {% render 'product-fallback-svg', product: product %}
       {%- endif -%}
