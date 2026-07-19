@@ -122,26 +122,52 @@
       </div>
     {% endform %}
 
-    <div class="spec-sheet">
-      {%- assign spec_rows = product.metafields.custom.spec_sheet.value -%}
-      {%- if spec_rows != blank -%}
-        {%- for row in spec_rows -%}
+    {%- liquid
+      assign spec_size = product.metafields.custom.size.value | default: product.metafields.custom.size
+      assign spec_material = product.metafields.custom.material.value | default: product.metafields.custom.material
+      assign spec_finish = product.metafields.custom.finish.value | default: product.metafields.custom.finish
+      assign spec_thickness = product.metafields.custom.thickness.value | default: product.metafields.custom.thickness
+      assign spec_short = product.metafields.custom.short_description.value | default: product.metafields.custom.short_description
+      assign has_specs = false
+      if spec_size != blank or spec_material != blank or spec_finish != blank or spec_thickness != blank or spec_short != blank
+        assign has_specs = true
+      endif
+    -%}
+
+    {%- if has_specs -%}
+      <div class="spec-sheet">
+        {%- if spec_size != blank -%}
           <div class="spec-row">
-            <span class="k">{{ row.key }}</span>
-            <span class="v">{{ row.value }}</span>
+            <span class="k">{{ 'products.product.specs.size' | t }}</span>
+            <span class="v">{{ spec_size }}</span>
           </div>
-        {%- endfor -%}
-      {%- else -%}
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'spec' -%}
-            <div class="spec-row" {{ block.shopify_attributes }}>
-              <span class="k">{{ block.settings.key }}</span>
-              <span class="v">{{ block.settings.value }}</span>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      {%- endif -%}
-    </div>
+        {%- endif -%}
+        {%- if spec_material != blank -%}
+          <div class="spec-row">
+            <span class="k">{{ 'products.product.specs.material' | t }}</span>
+            <span class="v">{{ spec_material }}</span>
+          </div>
+        {%- endif -%}
+        {%- if spec_finish != blank -%}
+          <div class="spec-row">
+            <span class="k">{{ 'products.product.specs.finish' | t }}</span>
+            <span class="v">{{ spec_finish }}</span>
+          </div>
+        {%- endif -%}
+        {%- if spec_thickness != blank -%}
+          <div class="spec-row">
+            <span class="k">{{ 'products.product.specs.thickness' | t }}</span>
+            <span class="v">{{ spec_thickness }}</span>
+          </div>
+        {%- endif -%}
+        {%- if spec_short != blank -%}
+          <div class="spec-row spec-row--desc">
+            <span class="k">{{ 'products.product.specs.short_description' | t }}</span>
+            <span class="v">{{ spec_short }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
     <div class="trust-strip">
       {%- for block in section.blocks -%}
@@ -162,14 +188,6 @@
   "class": "section-main-product",
   "blocks": [
     {
-      "type": "spec",
-      "name": "Spec row (fallback)",
-      "settings": [
-        { "type": "text", "id": "key", "label": "Label", "default": "Material" },
-        { "type": "text", "id": "value", "label": "Value", "default": "2MM Mild Steel" }
-      ]
-    },
-    {
       "type": "trust",
       "name": "Trust item",
       "settings": [
@@ -182,9 +200,6 @@
     {
       "name": "Product",
       "blocks": [
-        { "type": "spec", "settings": { "key": "Material", "value": "2MM Mild Steel" } },
-        { "type": "spec", "settings": { "key": "Cut Tolerance", "value": "± 0.10MM" } },
-        { "type": "spec", "settings": { "key": "Lead Time", "value": "3–5 Working Days" } },
         { "type": "trust", "settings": { "text": "CUT TO ORDER" } },
         { "type": "trust", "settings": { "text": "RAWALPINDI PICKUP AVAILABLE" } },
         { "type": "trust", "settings": { "text": "WHATSAPP SUPPORT" } }

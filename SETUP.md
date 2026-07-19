@@ -52,30 +52,25 @@ Create these products in **Admin → Products** with matching handles so collect
 
 **Also set per product:**
 - Featured image (replaces SVG fallback)
-- Description from prototype copy
+- Description from prototype copy (optional long body)
 - Metafield `custom.unit_text` (e.g. `/ piece`, `/ panel`) for price suffix
 - Metafield `custom.cut_file` (e.g. `CUT FILE V3`) for PDP code line
-- Metafield `custom.spec_sheet` (JSON list of `{key, value}` objects) for spec table — see below
+- Product detail metafields below for the specs table under Add to Cart
 
-### Spec sheet metafield
+### Product detail metafields (specs under Add to Cart)
 
-1. **Settings → Custom data → Products → Add definition**
-2. Namespace/key: `custom.spec_sheet`
-3. Type: **JSON**
-4. Example value for wall clock:
+Create these under **Settings → Custom data → Products → Add definition**.  
+Then fill them on each product: **Products → [product] → Product metafields**.
 
-```json
-[
-  {"key": "Material", "value": "2MM Mild Steel"},
-  {"key": "Diameter", "value": "24 IN (609MM)"},
-  {"key": "Cut Tolerance", "value": "± 0.10MM"},
-  {"key": "Movement", "value": "Silent Sweep Quartz"},
-  {"key": "Mounting", "value": "Rear Keyhole Bracket"},
-  {"key": "Lead Time", "value": "3–5 Working Days"}
-]
-```
+| Namespace / key | Type | Example |
+|---|---|---|
+| `custom.size` | Single line text | `24" diameter` |
+| `custom.material` | Single line text | `Mild Steel` |
+| `custom.finish` | Single line text | `Matte Black` |
+| `custom.thickness` | Single line text | `1 mm` |
+| `custom.short_description` | Multi-line text | `Laser-cut calligraphy clock, 24" dia.` |
 
-Until metafields are set, the product template uses editable spec blocks in the theme editor.
+Empty fields are hidden automatically — only filled fields appear in the spec sheet.
 
 ---
 

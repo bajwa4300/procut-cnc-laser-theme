@@ -38,6 +38,13 @@
       },
       "price": {
         "from_price_html": "From {{ price }}"
+      },
+      "specs": {
+        "size": "Size",
+        "material": "Material",
+        "finish": "Finish",
+        "thickness": "Thickness",
+        "short_description": "Short Description"
       }
     },
     "badge": {
