@@ -67,14 +67,19 @@
     {% form 'product', product, id: product_form_id, class: 'product-form', data-product-id: product.id %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-input>
 
+      <div class="qty-row">
+        <div class="qty-box">
+          <button type="button" data-qty-minus aria-label="{{ 'products.product.quantity.decrease' | t }}">−</button>
+          <span class="qty-value" data-qty-display aria-live="polite">1</span>
+          <input type="hidden" name="quantity" value="1" class="qty-input" min="1" aria-label="{{ 'products.product.quantity.label' | t }}">
+          <button type="button" data-qty-plus aria-label="{{ 'products.product.quantity.increase' | t }}">+</button>
+        </div>
+      </div>
+
       {%- unless product.has_only_default_variant -%}
         {%- for option in product.options_with_values -%}
-          <div class="opt-group">
-            <h5>
-              {{ option.name }}
-              <span data-option-label="{{ option.name | handleize }}">— {{ option.selected_value }}</span>
-            </h5>
-            <div class="opt-row" data-option-index="{{ forloop.index0 }}">
+          <div class="opt-group opt-group--atc" data-option-name="{{ option.name | escape }}">
+            <div class="opt-row opt-row--stack" data-option-index="{{ forloop.index0 }}">
               {%- for value in option.values -%}
                 {%- if option.name == 'Finish' or option.name == 'finish' -%}
                   {%- assign swatch_color = '#1a1a1a' -%}
@@ -91,10 +96,10 @@
                 {%- else -%}
                   <button
                     type="button"
-                    class="opt-pill{% if option.selected_value == value %} active{% endif %}"
+                    class="btn solid full opt-variant{% if option.selected_value == value %} active{% endif %}"
                     data-option-value="{{ value | escape }}"
                     data-option-name="{{ option.name | escape }}"
-                  >{{ value }}</button>
+                  >{{ value | upcase }}</button>
                 {%- endif -%}
               {%- endfor -%}
             </div>
@@ -106,15 +111,6 @@
           </div>
         {%- endfor -%}
       {%- endunless -%}
-
-      <div class="qty-row">
-        <div class="qty-box">
-          <button type="button" data-qty-minus aria-label="{{ 'products.product.quantity.decrease' | t }}">−</button>
-          <span class="qty-value" data-qty-display aria-live="polite">1</span>
-          <input type="hidden" name="quantity" value="1" class="qty-input" min="1" aria-label="{{ 'products.product.quantity.label' | t }}">
-          <button type="button" data-qty-plus aria-label="{{ 'products.product.quantity.increase' | t }}">+</button>
-        </div>
-      </div>
 
       <div class="pdp-ctas">
         <button type="submit" name="add" class="btn solid full" id="AddToCart-{{ section.id }}"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>

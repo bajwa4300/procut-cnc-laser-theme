@@ -72,6 +72,21 @@ Then fill them on each product: **Products → [product] → Product metafields*
 
 Empty fields are hidden automatically — only filled fields appear in the spec sheet.
 
+### Style variants (Wall Hanging / Table-Standing Décor)
+
+On each product that needs both styles:
+
+1. **Products → [product] → Variants**
+2. Add option name: **Style** (or **Type**)
+3. Add values exactly:
+   - `Wall Hanging`
+   - `Table-Standing Décor`
+4. Set a **different price** on each variant
+5. Click each variant → **Add image** (or assign media) so selecting it changes the main photo
+6. Save
+
+The product page shows these as full-width buttons (same font/style as **ADD TO CART**) directly above Add to Cart. Selecting a style updates price + image automatically.
+
 ---
 
 ## Collections

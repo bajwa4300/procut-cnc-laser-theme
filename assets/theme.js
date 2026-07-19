@@ -195,27 +195,69 @@
       });
     }
 
+    function setMainImage(url, alt) {
+      const main = productInfo.querySelector('#ProductMainImg, [data-product-main-image]');
+      if (!main || !url) return;
+      main.removeAttribute('srcset');
+      main.removeAttribute('sizes');
+      main.src = url;
+      if (alt) main.alt = alt;
+    }
+
     function updateVariantUI(variant) {
       if (!variant) return;
       if (variantInput) variantInput.value = variant.id;
       if (priceEl) priceEl.innerHTML = formatMoney(variant.price);
       if (stockEl) {
-        stockEl.textContent = variant.available ? 'IN STOCK' : 'SOLD OUT';
+        stockEl.textContent = variant.available
+          ? (window.variantStrings?.inStock || 'IN STOCK — SHIPS IN 3–5 DAYS')
+          : (window.variantStrings?.soldOut || 'SOLD OUT');
       }
       if (addBtn) addBtn.disabled = !variant.available;
+
+      if (variant.featured_image) {
+        const img = variant.featured_image;
+        const url = img.src || img;
+        setMainImage(url, product.title);
+        const mediaId = String(img.id || '');
+        productInfo.querySelectorAll('.pdp-thumb').forEach((thumb) => {
+          const match = mediaId && thumb.dataset.mediaId === mediaId;
+          thumb.classList.toggle('active', match);
+        });
+      }
+
+      // #region agent log
+      fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
+        body: JSON.stringify({
+          sessionId: '7a0570',
+          runId: 'variant-select',
+          hypothesisId: 'H2',
+          location: 'theme.js:updateVariantUI',
+          message: 'Variant selected',
+          data: {
+            id: variant.id,
+            title: variant.title,
+            price: variant.price,
+            hasImage: !!(variant.featured_image && (variant.featured_image.src || variant.featured_image)),
+            imageId: variant.featured_image?.id || null,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
     }
 
-    productInfo.querySelectorAll('.opt-pill, .opt-swatch').forEach((btn) => {
+    productInfo.querySelectorAll('.opt-variant, .opt-pill, .opt-swatch').forEach((btn) => {
       btn.addEventListener('click', () => {
         const row = btn.closest('.opt-row');
         const index = row?.dataset.optionIndex;
         const select = productInfo.querySelector(`[data-option-select="${index}"]`);
-        row?.querySelectorAll('.opt-pill, .opt-swatch').forEach((b) => b.classList.remove('active'));
+        row?.querySelectorAll('.opt-variant, .opt-pill, .opt-swatch').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
         if (select) {
           select.value = btn.dataset.optionValue;
-          const label = productInfo.querySelector(`[data-option-label="${(btn.dataset.optionName || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}"]`);
-          if (label) label.textContent = `— ${btn.dataset.optionValue}`;
         }
         updateVariantUI(findVariant());
       });
