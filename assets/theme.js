@@ -165,11 +165,19 @@
     });
 
     const qtyInput = form?.querySelector('.qty-input');
+    const qtyDisplay = form?.querySelector('[data-qty-display]');
+
+    function setQty(next) {
+      const value = Math.max(1, parseInt(next, 10) || 1);
+      if (qtyInput) qtyInput.value = String(value);
+      if (qtyDisplay) qtyDisplay.textContent = String(value);
+    }
+
     form?.querySelector('[data-qty-minus]')?.addEventListener('click', () => {
-      if (qtyInput && parseInt(qtyInput.value, 10) > 1) qtyInput.value = parseInt(qtyInput.value, 10) - 1;
+      setQty((parseInt(qtyInput?.value, 10) || 1) - 1);
     });
     form?.querySelector('[data-qty-plus]')?.addEventListener('click', () => {
-      if (qtyInput) qtyInput.value = parseInt(qtyInput.value, 10) + 1;
+      setQty((parseInt(qtyInput?.value, 10) || 1) + 1);
     });
 
     form?.addEventListener('submit', async (e) => {

@@ -110,7 +110,8 @@
       <div class="qty-row">
         <div class="qty-box">
           <button type="button" data-qty-minus aria-label="{{ 'products.product.quantity.decrease' | t }}">−</button>
-          <input type="number" name="quantity" value="1" min="1" class="qty-input" aria-label="{{ 'products.product.quantity.label' | t }}">
+          <span class="qty-value" data-qty-display aria-live="polite">1</span>
+          <input type="hidden" name="quantity" value="1" class="qty-input" min="1" aria-label="{{ 'products.product.quantity.label' | t }}">
           <button type="button" data-qty-plus aria-label="{{ 'products.product.quantity.increase' | t }}">+</button>
         </div>
       </div>
