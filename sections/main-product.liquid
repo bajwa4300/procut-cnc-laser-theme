@@ -79,7 +79,7 @@
       {%- unless product.has_only_default_variant -%}
         {%- for option in product.options_with_values -%}
           <div class="opt-group opt-group--atc" data-option-name="{{ option.name | escape }}">
-            <div class="opt-row opt-row--stack" data-option-index="{{ forloop.index0 }}">
+            <div class="opt-row opt-row--inline" data-option-index="{{ forloop.index0 }}">
               {%- for value in option.values -%}
                 {%- if option.name == 'Finish' or option.name == 'finish' -%}
                   {%- assign swatch_color = '#1a1a1a' -%}
@@ -96,10 +96,10 @@
                 {%- else -%}
                   <button
                     type="button"
-                    class="btn solid full opt-variant{% if option.selected_value == value %} active{% endif %}"
+                    class="opt-variant{% if option.selected_value == value %} active{% endif %}"
                     data-option-value="{{ value | escape }}"
                     data-option-name="{{ option.name | escape }}"
-                  >{{ value | upcase }}</button>
+                  >{{ value }}</button>
                 {%- endif -%}
               {%- endfor -%}
             </div>

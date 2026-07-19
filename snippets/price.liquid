@@ -8,7 +8,7 @@
   assign money_price = price | money
 -%}
 
-<span class="price{% if price_class %} {{ price_class }}{% endif %}">
+<span class="price{% if price_class %} {{ price_class }}{% endif %}" data-card-price>
   {%- if show_from and product.price_varies -%}
     {{ 'products.product.price.from_price_html' | t: price: money_price }}
   {%- else -%}
