@@ -60,7 +60,7 @@
     </div>
 
     {%- if product.description != blank -%}
-      <p class="pdp-desc">{{ product.description }}</p>
+      <div class="pdp-desc">{{ product.description }}</div>
     {%- endif -%}
 
     {%- assign product_form_id = 'product-form-' | append: section.id -%}

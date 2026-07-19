@@ -180,6 +180,42 @@
       setQty((parseInt(qtyInput?.value, 10) || 1) + 1);
     });
 
+    // #region agent log
+    (function logPdpFonts() {
+      const desc = productInfo.querySelector('.pdp-desc');
+      const descChild = desc?.querySelector('p,span') || desc;
+      const specV = productInfo.querySelector('.spec-row .v');
+      const data = {
+        descTag: desc?.tagName || null,
+        descNestedOutside: !!(desc && desc.innerHTML === '' && desc.nextElementSibling?.tagName === 'P'),
+        descFont: descChild ? getComputedStyle(descChild).fontFamily : null,
+        descSize: descChild ? getComputedStyle(descChild).fontSize : null,
+        specFont: specV ? getComputedStyle(specV).fontFamily : null,
+        hasJetBrainsCss: [...document.styleSheets].some((s) => {
+          try {
+            return [...(s.cssRules || [])].some((r) => (r.cssText || '').includes('JetBrains Mono'));
+          } catch (e) {
+            return false;
+          }
+        }),
+      };
+      fetch('http://127.0.0.1:7842/ingest/2f27f6d2-a438-4a01-804f-ed7e66eb38b8', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '7a0570' },
+        body: JSON.stringify({
+          sessionId: '7a0570',
+          runId: 'font-verify',
+          hypothesisId: 'H1',
+          location: 'theme.js:logPdpFonts',
+          message: 'PDP computed fonts',
+          data,
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      if (desc) desc.dataset.debugFont = data.descFont || '';
+    })();
+    // #endregion
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const fd = new FormData(form);
