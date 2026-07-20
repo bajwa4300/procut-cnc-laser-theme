@@ -126,7 +126,7 @@
         "category_heading": "Category",
         "material_heading": "Material",
         "order_type_heading": "Order Type",
-        "products_per_page": 12,
+        "products_per_page": 6,
         "show_filter_cta": true,
         "filter_cta_label": "CAN'T FIND IT? ASK →",
         "filter_cta_url": ""

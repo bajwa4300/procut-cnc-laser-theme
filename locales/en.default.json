@@ -20,7 +20,12 @@
     "breadcrumb": "Breadcrumb",
     "workshop": "Workshop",
     "whatsapp_us": "WHATSAPP US",
-    "continue_shopping": "Continue shopping"
+    "continue_shopping": "Continue shopping",
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Back",
+      "next": "Forward"
+    }
   },
   "products": {
     "product": {

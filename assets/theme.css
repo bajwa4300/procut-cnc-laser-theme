@@ -254,6 +254,30 @@ footer,.site-footer{background:var(--paper2);padding:90px 32px 30px;position:rel
 .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--steel);}
 .toolbar select{font-family:var(--mono);font-size:11px;background:none;border:1px solid var(--black);padding:8px 10px;}
 .collection-empty{padding:40px;font-family:var(--mono);font-size:12px;color:var(--steel);}
+.collection-pagination{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;
+  margin-top:36px;padding-top:28px;border-top:1px solid var(--line);
+}
+.collection-pagination .page-numbers{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;}
+.collection-pagination .page-btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;
+  text-decoration:none;color:var(--black);border:1px solid var(--black);background:none;
+  padding:12px 16px;min-width:44px;min-height:44px;box-sizing:border-box;
+  display:inline-flex;align-items:center;justify-content:center;transition:.2s;line-height:1;
+}
+.collection-pagination .page-btn:hover:not(.disabled):not(.ellipsis):not(.active){
+  background:var(--black);color:var(--white);
+}
+.collection-pagination .page-btn.active{background:var(--black);color:var(--white);}
+.collection-pagination .page-btn.disabled{opacity:.35;pointer-events:none;}
+.collection-pagination .page-btn.ellipsis{border-color:transparent;min-width:auto;padding:12px 6px;pointer-events:none;}
+.collection-pagination .page-nav{padding:12px 18px;}
+@media(max-width:700px){
+  .collection-pagination{gap:8px;}
+  .collection-pagination .page-btn{padding:10px 12px;font-size:10px;min-width:40px;min-height:40px;}
+  .collection-pagination .page-nav{flex:1 1 auto;min-width:calc(50% - 8px);}
+  .collection-pagination .page-numbers{order:3;width:100%;margin-top:4px;}
+}
 
 /* Product PDP */
 .pdp{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:40px auto 0;border-top:1px solid var(--line);}

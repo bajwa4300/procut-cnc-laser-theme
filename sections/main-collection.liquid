@@ -136,7 +136,41 @@
       </div>
 
       {%- if paginate.pages > 1 -%}
-        <div class="pagination">{{ paginate | default_pagination }}</div>
+        <nav class="collection-pagination" aria-label="{{ 'general.pagination.label' | t }}">
+          {%- if paginate.previous -%}
+            <a class="page-btn page-nav" href="{{ paginate.previous.url }}#ProductGrid" rel="prev">
+              ← {{ 'general.pagination.previous' | t }}
+            </a>
+          {%- else -%}
+            <span class="page-btn page-nav disabled" aria-disabled="true">
+              ← {{ 'general.pagination.previous' | t }}
+            </span>
+          {%- endif -%}
+
+          <div class="page-numbers">
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a class="page-btn page-num" href="{{ part.url }}#ProductGrid">{{ part.title }}</a>
+              {%- else -%}
+                {%- if part.title == paginate.current_page -%}
+                  <span class="page-btn page-num active" aria-current="page">{{ part.title }}</span>
+                {%- else -%}
+                  <span class="page-btn page-num ellipsis">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.next -%}
+            <a class="page-btn page-nav" href="{{ paginate.next.url }}#ProductGrid" rel="next">
+              {{ 'general.pagination.next' | t }} →
+            </a>
+          {%- else -%}
+            <span class="page-btn page-nav disabled" aria-disabled="true">
+              {{ 'general.pagination.next' | t }} →
+            </span>
+          {%- endif -%}
+        </nav>
       {%- endif -%}
     {%- endpaginate -%}
   </div>
@@ -154,7 +188,7 @@
     { "type": "text", "id": "category_heading", "label": "Category heading", "default": "Category" },
     { "type": "text", "id": "material_heading", "label": "Material heading", "default": "Material" },
     { "type": "text", "id": "order_type_heading", "label": "Order type heading", "default": "Order Type" },
-    { "type": "range", "id": "products_per_page", "min": 6, "max": 24, "step": 3, "label": "Products per page", "default": 12 },
+    { "type": "range", "id": "products_per_page", "min": 3, "max": 24, "step": 3, "label": "Products per page", "default": 6 },
     { "type": "checkbox", "id": "show_filter_cta", "label": "Show filter CTA button", "default": true },
     { "type": "text", "id": "filter_cta_label", "label": "Filter CTA label", "default": "CAN'T FIND IT? ASK →" },
     { "type": "url", "id": "filter_cta_url", "label": "Filter CTA URL" }
